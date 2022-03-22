@@ -1,32 +1,37 @@
-import { useContext } from "react";
-import { IUserContext } from "../state/types";
 import { Routes, Route } from "react-router-dom";
-import { UserContext } from "../state/context";
+import { useUserContext } from "../state/context";
 import PrivateRoute from "./PrivateRoute";
 import LoginPage from "../pages/Login";
+import Home from "../pages/Home";
+import NavBar from "../components/NavBar";
 import "./../styles/App.css";
 
 function AppRouter() {
-  const { state, setState } = useContext<IUserContext>(UserContext);
+  const {
+    state: { isLogged },
+  } = useUserContext();
 
   return (
     <div className="App">
-      <h1>Sorteio de Rifa</h1>
-      <p>Logado: {state.isLogged ? "Logado" : "Não logado"}</p>
-      <button onClick={() => setState({ isLogged: !state.isLogged })}>
-        Change
-      </button>
+      {isLogged && <NavBar />}
       <Routes>
         <Route path={"/login"} element={<LoginPage />} />
         <Route
           path={"/"}
           element={
             <PrivateRoute>
-              <div>Home</div>
+              <Home />
             </PrivateRoute>
           }
         />
-        <Route path={"/about"} element={<div>About</div>} />
+        <Route
+          path={"/about"}
+          element={
+            <PrivateRoute>
+              <div>About</div>
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );

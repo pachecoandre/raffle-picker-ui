@@ -1,4 +1,4 @@
-import { createContext, FC, useState } from "react";
+import { createContext, FC, useContext, useState } from "react";
 import { IUserContext } from "./types";
 
 const UserContext = createContext<IUserContext | any>(null);
@@ -13,4 +13,6 @@ const ContextProvider: FC<{}> = ({ children }) => {
   );
 };
 
-export { ContextProvider, UserContext };
+const useUserContext = () => useContext<IUserContext>(UserContext)
+
+export { ContextProvider, useUserContext };

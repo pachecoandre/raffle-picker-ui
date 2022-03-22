@@ -1,11 +1,20 @@
-import { FC } from 'react'
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../state/context";
 
 const LoginPage: FC<{}> = () => {
+  const navigate = useNavigate();
+  const { state, setState } = useUserContext();
+  const handleLogin = () => {
+    setState({ ...state, isLogged: true });
+    navigate("/");
+  };
+  return (
+    <>
+      <h1>LogIn</h1>
+      <button onClick={handleLogin}>LogIn</button>
+    </>
+  );
+};
 
-    return (
-        <h1>Login</h1>
-    )
-
-}
-
-export default LoginPage
+export default LoginPage;
