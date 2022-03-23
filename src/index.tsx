@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./styles/index.css";
 import AppRouter from "./router/AppRouter";
-import { ContextProvider } from "./state/context";
+import { ContextProvider } from "./state";
 
 ReactDOM.render(
   <ContextProvider>

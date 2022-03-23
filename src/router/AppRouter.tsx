@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useUserContext } from "../state/context";
+import { useUserContext } from "../state";
 import PrivateRoute from "./PrivateRoute";
 import LoginPage from "../pages/Login";
 import Home from "../pages/Home";

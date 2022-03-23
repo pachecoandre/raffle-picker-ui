@@ -1,6 +1,6 @@
 import { createContext, FC, useContext, useState } from "react";
 import { IUserContext } from "./types";
-import initialState from "../state/initialState";
+import initialState from "./initialState";
 
 const UserContext = createContext<IUserContext | any>(null);
 

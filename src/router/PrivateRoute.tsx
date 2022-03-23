@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Navigate } from "react-router-dom";
-import { useUserContext } from "../state/context";
+import { useUserContext } from "../state";
 import AccessDenied from "./AccessDenied";
 
 interface Props {
