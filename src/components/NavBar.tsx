@@ -2,15 +2,19 @@ import { Link } from "react-router-dom";
 import { useUserContext } from "../state";
 const NavBar = () => {
   const { resetState } = useUserContext();
-  const handleLogout = () => {
-    resetState();
-  };
+  const handleLogout = () => resetState();
+
   return (
-    <nav>
+    <nav
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "8px",
+        backgroundColor: "#eeeeee",
+      }}
+    >
       <Link to={"/"}>Home</Link>
-      <span>{" | "}</span>
       <Link to={"/about"}>About</Link>
-      <span>{" | "}</span>
       <button onClick={handleLogout}>Log out</button>
     </nav>
   );

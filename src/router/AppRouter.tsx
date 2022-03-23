@@ -12,7 +12,7 @@ function AppRouter() {
   } = useUserContext();
 
   return (
-    <div className="App">
+    <div>
       {isLogged && <NavBar />}
       <Routes>
         <Route path={"/login"} element={<LoginPage />} />
