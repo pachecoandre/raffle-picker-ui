@@ -1,3 +1,5 @@
-export default {
+const initialState = {
   isLogged: false,
 };
+
+export default initialState;

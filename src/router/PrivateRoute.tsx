@@ -1,9 +1,9 @@
 import { Navigate } from "react-router-dom";
-import { useUserContext } from '../state/context'
+import { useUserContext } from "../state/context";
 
 function PrivateRoute({ children }: { children: JSX.Element }) {
-  const { state } =  useUserContext()
-  
+  const { state } = useUserContext();
+
   // https://stackblitz.com/github/remix-run/react-router/tree/main/examples/auth?file=src/App.tsx
 
   if (!state.isLogged) {

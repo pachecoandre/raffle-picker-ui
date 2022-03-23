@@ -4,9 +4,9 @@ import { useUserContext } from "../state/context";
 
 const LoginPage: FC<{}> = () => {
   const navigate = useNavigate();
-  const { state, setState } = useUserContext();
+  const { setState } = useUserContext();
   const handleLogin = () => {
-    setState({ ...state, isLogged: true });
+    setState({ isLogged: true });
     navigate("/");
   };
   return (
