@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useUserContext } from "../state/context";
 const NavBar = () => {
-  const { setState } = useUserContext();
+  const { resetState } = useUserContext();
   const handleLogout = () => {
-    setState({ isLogged: false });
+    resetState();
   };
   return (
     <nav>

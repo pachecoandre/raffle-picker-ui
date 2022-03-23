@@ -19,7 +19,7 @@ function AppRouter() {
         <Route
           path={"/"}
           element={
-            <PrivateRoute>
+            <PrivateRoute allowedRoles={["user", "admin"]}>
               <Home />
             </PrivateRoute>
           }
@@ -27,7 +27,7 @@ function AppRouter() {
         <Route
           path={"/about"}
           element={
-            <PrivateRoute>
+            <PrivateRoute allowedRoles={["admin"]}>
               <div>About</div>
             </PrivateRoute>
           }

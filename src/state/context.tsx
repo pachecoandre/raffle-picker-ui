@@ -5,12 +5,15 @@ import initialState from "../state/initialState";
 const UserContext = createContext<IUserContext | any>(null);
 
 const ContextProvider: FC<{}> = ({ children }) => {
-  const [state, setStateFn] = useState(initialState);
+  const [state, setState] = useState(initialState);
 
-  const setState = (props: any) => setStateFn({ ...state, ...props });
+  const updateState = (props: typeof initialState) =>
+    setState({ ...state, ...props });
+
+  const resetState = () => setState(initialState);
 
   return (
-    <UserContext.Provider value={{ state, setState }}>
+    <UserContext.Provider value={{ state, updateState, resetState }}>
       {children}
     </UserContext.Provider>
   );

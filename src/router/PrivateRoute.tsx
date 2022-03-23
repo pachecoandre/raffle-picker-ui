@@ -1,20 +1,30 @@
+import { FC } from "react";
 import { Navigate } from "react-router-dom";
 import { useUserContext } from "../state/context";
+import AccessDenied from "./AccessDenied";
 
-function PrivateRoute({ children }: { children: JSX.Element }) {
+interface Props {
+  children: JSX.Element;
+  allowedRoles: string[];
+}
+
+const PrivateRoute: FC<Props> = ({ children, allowedRoles }) => {
   const { state } = useUserContext();
+  const isLogged = state.isLogged;
+  const hasAccess = () => allowedRoles.includes(state.role);
 
   // https://stackblitz.com/github/remix-run/react-router/tree/main/examples/auth?file=src/App.tsx
+  // https://medium.com/front-end-weekly/how-to-create-private-route-with-react-router-v6-fa4b9d74cb55
 
-  if (!state.isLogged) {
-    // Redirect them to the /login page, but save the current location they were
-    // trying to go to when they were redirected. This allows us to send them
-    // along to that page after they login, which is a nicer user experience
-    // than dropping them off on the home page.
-    return <Navigate to="/login" replace />;
+  if (isLogged && hasAccess()) {
+    return children;
   }
 
-  return children;
-}
+  if (isLogged && !hasAccess()) {
+    return <AccessDenied />;
+  }
+
+  return <Navigate to="/login" replace />;
+};
 
 export default PrivateRoute;
