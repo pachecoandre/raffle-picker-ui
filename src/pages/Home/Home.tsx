@@ -1,4 +1,6 @@
 import Container from "../../components/Container";
+import { ActionsArea, Description } from "./styles";
+import CampaignsTable from "./CampaignsTable";
 
 const HomePage = () => {
   const campaigns = [
@@ -7,21 +9,11 @@ const HomePage = () => {
   ];
   return (
     <Container>
-      <p style={{ textAlign: "center" }}>Seja bem vindo ao sorteio de rifa</p>
-      <div style={{ textAlign: "end" }}>
+      <Description>Seja bem vindo ao sorteio de rifa</Description>
+      <ActionsArea>
         <button>Criar campanha</button>
-      </div>
-      <div style={{ maxWidth: "400px" }}>
-        <h2>Minhas campanhas</h2>
-        <div>
-          {campaigns.map((campaign) => (
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <div>{campaign.name}</div>
-              <div>{campaign.drawDate}</div>
-            </div>
-          ))}
-        </div>
-      </div>
+      </ActionsArea>
+      <CampaignsTable campaigns={campaigns} />
     </Container>
   );
 };

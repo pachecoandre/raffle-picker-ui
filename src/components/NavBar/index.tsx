@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useUserContext } from "../state";
+import { useUserContext } from "../../state";
 const NavBar = () => {
   const { resetState } = useUserContext();
   const handleLogout = () => resetState();
