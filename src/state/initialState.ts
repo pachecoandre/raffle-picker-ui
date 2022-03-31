@@ -1,6 +1,6 @@
 const initialState = {
   isLogged: false,
-  role: "user",
+  role: "admin",
 };
 
 export default initialState;

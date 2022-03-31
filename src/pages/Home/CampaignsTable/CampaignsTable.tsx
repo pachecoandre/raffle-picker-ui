@@ -6,18 +6,20 @@ interface Campaign {
 }
 
 interface Props {
+  title?: string;
   campaigns: Campaign[];
 }
 
-const CampaignsTable: FC<Props> = ({ campaigns }) => (
+const CampaignsTable: FC<Props> = ({ title, campaigns }) => (
   <div
     style={{
       display: "flex",
       justifyContent: "center",
+      marginBottom: "32px",
     }}
   >
     <div>
-      <h2>Minhas campanhas</h2>
+      <h2>{title}</h2>
       <div>
         {campaigns.map((campaign) => (
           <div style={{ display: "flex", justifyContent: "space-between" }}>

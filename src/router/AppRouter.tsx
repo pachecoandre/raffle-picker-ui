@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { useUserContext } from "../state";
 import PrivateRoute from "./PrivateRoute";
 import LoginPage from "../pages/Login";
+import NewCampaign from "../pages/NewCampaign";
 import Home from "../pages/Home";
 import NavBar from "../components/NavBar";
 import "./../styles/App.css";
@@ -25,10 +26,10 @@ function AppRouter() {
           }
         />
         <Route
-          path={"/about"}
+          path={"/campaigns/new"}
           element={
             <PrivateRoute allowedRoles={["admin"]}>
-              <div>About</div>
+              <NewCampaign />
             </PrivateRoute>
           }
         />
