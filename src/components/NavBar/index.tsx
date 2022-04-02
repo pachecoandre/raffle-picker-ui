@@ -14,7 +14,6 @@ const NavBar = () => {
       }}
     >
       <Link to={"/"}>Home</Link>
-      <Link to={"/about"}>About</Link>
       <button onClick={handleLogout}>Log out</button>
     </nav>
   );

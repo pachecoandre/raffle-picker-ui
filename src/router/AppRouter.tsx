@@ -13,7 +13,7 @@ function AppRouter() {
   } = useUserContext();
 
   return (
-    <div>
+    <>
       {isLogged && <NavBar />}
       <Routes>
         <Route path={"/login"} element={<LoginPage />} />
@@ -34,7 +34,7 @@ function AppRouter() {
           }
         />
       </Routes>
-    </div>
+    </>
   );
 }
 
