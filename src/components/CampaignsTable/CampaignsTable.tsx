@@ -14,7 +14,7 @@ interface Props {
   data: Campaign[];
 }
 
-const Table: FC<Props> = ({ title, header, data }) => {
+const CampaignsTable: FC<Props> = ({ title, header, data }) => {
   const navigate = useNavigate();
   return (
     <Wrapper>
@@ -36,10 +36,10 @@ const Table: FC<Props> = ({ title, header, data }) => {
           <tbody>
             {data.map((row) => (
               <tr key={row.id}>
-                <td key={row.id}>
+                <td>
                   <Link to={`/campaigns/${row.id}`}>{row.name}</Link>
                 </td>
-                <td key={row.id}>{row.drawDate}</td>
+                <td>{row.drawDate}</td>
               </tr>
             ))}
           </tbody>
@@ -49,4 +49,4 @@ const Table: FC<Props> = ({ title, header, data }) => {
   );
 };
 
-export default Table;
+export default CampaignsTable;
