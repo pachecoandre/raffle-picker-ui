@@ -1,10 +1,12 @@
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import Container from "../../components/Container";
 import Input from "components/Input";
 import Section from "components/Section";
 
 const NewCampaign: FC = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -15,6 +17,7 @@ const NewCampaign: FC = () => {
       alert(JSON.stringify(values, null, 2));
     },
   });
+  const handleCancel = () => navigate(-1);
   return (
     <Container>
       <Section>
@@ -39,13 +42,17 @@ const NewCampaign: FC = () => {
             value={formik.values.price}
           />
           <Input
-            label="Data de sorteio"
+            label="Data prevista para o sorteio"
             id="drawDate"
             name="drawDate"
             type="date"
             onChange={formik.handleChange}
             value={formik.values.drawDate}
           />
+          <button type="button" onClick={handleCancel}>
+            Cancelar
+          </button>
+          <button type="submit">Criar</button>
         </form>
       </Section>
     </Container>
