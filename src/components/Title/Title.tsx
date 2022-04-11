@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
+import { Text, Wrapper } from "./styles";
 
 interface Props {
   configUrl?: string;
@@ -7,10 +8,10 @@ interface Props {
 
 const Title: FC<Props> = ({ children, configUrl }) => {
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <span style={{ fontSize: 32 }}>{children}</span>
+    <Wrapper>
+      <Text>{children}</Text>
       {configUrl && <Link to={configUrl}>editar</Link>}
-    </div>
+    </Wrapper>
   );
 };
 
