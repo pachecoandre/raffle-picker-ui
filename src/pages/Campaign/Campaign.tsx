@@ -13,11 +13,12 @@ const Campaign: FC = () => {
   const data = {
     sales: {
       quantity: 400,
-      amount: 2000,
+      amount: 4000,
       price: 10,
     },
-    sellers: 4,
+    sellers: 6,
     prizes: 8,
+    participants: 50,
   };
 
   return (
@@ -37,6 +38,7 @@ const Campaign: FC = () => {
           <Grid item xs={12} sm={6}>
             <Paper>Vendedores: {data.sellers}</Paper>
             <Paper>Prêmios: {data.prizes}</Paper>
+            <Paper>Participantes: {data.participants}</Paper>
           </Grid>
         </Grid>
       </Section>
