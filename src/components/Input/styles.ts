@@ -5,9 +5,17 @@ export const Label = styled.label`
 `;
 
 export const StyledInput = styled.input`
+  display: block;
   width: 100%;
   max-width: 200px;
-  display: block;
+  height: 18px;
+  border-radius: 5px;
+  border: solid 1px #777;
+  padding: 8px;
+  font-size: 14px;
+  &:focus-visible {
+    outline: none;
+  }
 `;
 
 export const Wrapper = styled.div`

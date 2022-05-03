@@ -2,7 +2,7 @@ import Container from "components/Container";
 import Section from "components/Section";
 
 import { Description } from "./styles";
-import CampaignsTable from "components/CampaignsTable";
+import CampaignsTable from "pages/Home/components/CampaignsTable";
 
 const HomePage = () => {
   const data = [

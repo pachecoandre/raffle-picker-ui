@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Grid } from "@mui/material";
 import { currency } from "helpers/formatter";
 import Container from "components/Container";
@@ -36,7 +36,11 @@ const Campaign: FC = () => {
             <Paper>Valor da rifa: {currency(data.sales.price)}</Paper>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Paper>Vendedores: {data.sellers}</Paper>
+            <Paper>
+              <Link to={`/campaigns/${campaignId}/sellers`}>
+                Vendedores: {data.sellers}
+              </Link>
+            </Paper>
             <Paper>Prêmios: {data.prizes}</Paper>
             <Paper>Participantes: {data.participants}</Paper>
           </Grid>

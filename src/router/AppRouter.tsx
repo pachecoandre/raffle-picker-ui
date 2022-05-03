@@ -1,12 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import { useUserContext } from "../state";
+import { useUserContext } from "state";
 import PrivateRoute from "./PrivateRoute";
-import LoginPage from "../pages/Login";
-import Home from "../pages/Home";
-import NewCampaign from "../pages/NewCampaign";
-import Campaign from "../pages/Campaign";
-import NavBar from "../components/NavBar";
-import "./../styles/App.css";
+import LoginPage from "pages/Login";
+import Home from "pages/Home";
+import NewCampaign from "pages/NewCampaign";
+import Campaign from "pages/Campaign";
+import NavBar from "components/NavBar";
+import Sellers from "pages/Sellers";
+import "../styles/App.css";
 
 function AppRouter() {
   const {
@@ -39,6 +40,14 @@ function AppRouter() {
           element={
             <PrivateRoute allowedRoles={["user", "admin"]}>
               <Campaign />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={"/campaigns/:campaignId/sellers"}
+          element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <Sellers />
             </PrivateRoute>
           }
         />
