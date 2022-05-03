@@ -17,7 +17,7 @@ const Sellers: FC = () => {
   return (
     <Container>
       <Section>
-        <Title>Vendedores de campanha {campaignId}</Title>
+        <Title backButton={true}>Vendedores de campanha {campaignId}</Title>
       </Section>
       <Section>
         {data.map((seller) => (

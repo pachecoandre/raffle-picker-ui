@@ -11,4 +11,13 @@ const Text = styled.div`
   margin-right: 8px;
 `;
 
-export { Text, Wrapper };
+const GoBack = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
+export { GoBack, Text, Wrapper };

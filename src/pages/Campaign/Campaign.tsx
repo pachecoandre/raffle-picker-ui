@@ -24,7 +24,7 @@ const Campaign: FC = () => {
   return (
     <Container>
       <Section>
-        <Title configUrl={`/campaigns/${campaignId}/edit`}>
+        <Title backButton={true} configUrl={`/campaigns/${campaignId}/edit`}>
           Campanha {campaignId}
         </Title>
       </Section>
