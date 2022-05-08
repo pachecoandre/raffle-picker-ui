@@ -12,16 +12,16 @@ const Title: FC<Props> = ({ backButton, children, configUrl }) => {
   const navigate = useNavigate();
   return (
     <Grid container>
-      <Grid item md={2}>
+      <Grid item xs={2}>
         {backButton && <GoBack onClick={() => navigate(-1)}>Voltar</GoBack>}
       </Grid>
-      <Grid item md={8}>
+      <Grid item xs={8}>
         <Wrapper>
           <Text>{children}</Text>
           {configUrl && <Link to={configUrl}>editar</Link>}
         </Wrapper>
       </Grid>
-      <Grid item md={2}></Grid>
+      <Grid item xs={2}></Grid>
     </Grid>
   );
 };

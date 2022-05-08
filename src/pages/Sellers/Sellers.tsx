@@ -4,6 +4,7 @@ import Container from "components/Container";
 import Section from "components/Section";
 import Title from "components/Title";
 import Seller from "./components/Seller";
+import SellersTable from "./components/Table";
 
 const Sellers: FC = () => {
   const { campaignId } = useParams();
@@ -20,9 +21,10 @@ const Sellers: FC = () => {
         <Title backButton={true}>Vendedores de campanha {campaignId}</Title>
       </Section>
       <Section>
-        {data.map((seller) => (
+        {/* {data.map((seller) => (
           <Seller key={seller.id} name={seller.name} />
-        ))}
+        ))} */}
+        <SellersTable />
       </Section>
     </Container>
   );
