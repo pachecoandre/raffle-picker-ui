@@ -3,17 +3,10 @@ import { useParams } from "react-router-dom";
 import Container from "components/Container";
 import Section from "components/Section";
 import Title from "components/Title";
-import Seller from "./components/Seller";
 import SellersTable from "./components/Table";
 
 const Sellers: FC = () => {
   const { campaignId } = useParams();
-
-  const data = [
-    { id: "1", name: "Anastácio" },
-    { id: "2", name: "João" },
-    { id: "3", name: "Reginaldo" },
-  ];
 
   return (
     <Container>
@@ -21,9 +14,6 @@ const Sellers: FC = () => {
         <Title backButton={true}>Vendedores de campanha {campaignId}</Title>
       </Section>
       <Section>
-        {/* {data.map((seller) => (
-          <Seller key={seller.id} name={seller.name} />
-        ))} */}
         <SellersTable />
       </Section>
     </Container>
