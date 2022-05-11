@@ -12,7 +12,6 @@ interface Props {
 const Section: FC<Props> = ({
   mt = 2,
   mb = 4,
-  justify = "center",
   children,
 }) => (
   <WideDiv

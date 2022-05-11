@@ -1,7 +1,8 @@
-import { Grid } from "@mui/material";
 import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { GoBack, Text, Wrapper } from "./styles";
+import { Grid } from "@mui/material";
+import GoBack from "components/GoBack";
+import { Text, Wrapper } from "./styles";
 
 interface Props {
   backButton?: boolean;
@@ -13,7 +14,7 @@ const Title: FC<Props> = ({ backButton, children, configUrl }) => {
   return (
     <Grid container>
       <Grid item xs={2}>
-        {backButton && <GoBack onClick={() => navigate(-1)}>Voltar</GoBack>}
+        {backButton && <GoBack />}
       </Grid>
       <Grid item xs={8}>
         <Wrapper>
