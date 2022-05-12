@@ -41,10 +41,17 @@ const Campaign: FC = () => {
                 Vendedores: {data.sellers}
               </Link>
             </Paper>
-            <Paper>Prêmios: {data.prizes}</Paper>
+            <Paper>
+              <Link to={`/campaigns/${campaignId}/prizes`}>
+                Prêmios: {data.prizes}
+              </Link>
+            </Paper>
             <Paper>Participantes: {data.participants}</Paper>
           </Grid>
         </Grid>
+      </Section>
+      <Section>
+        <button>Cadastrar venda</button>
       </Section>
       <Section>
         <button>Realizar sorteio</button>

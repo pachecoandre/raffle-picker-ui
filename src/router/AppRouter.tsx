@@ -7,6 +7,7 @@ import NewCampaign from "pages/NewCampaign";
 import Campaign from "pages/Campaign";
 import NavBar from "components/NavBar";
 import Sellers from "pages/Sellers";
+import Prizes from "pages/Prizes";
 import "../styles/App.css";
 
 function AppRouter() {
@@ -48,6 +49,14 @@ function AppRouter() {
           element={
             <PrivateRoute allowedRoles={["admin"]}>
               <Sellers />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={"/campaigns/:campaignId/prizes"}
+          element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <Prizes />
             </PrivateRoute>
           }
         />

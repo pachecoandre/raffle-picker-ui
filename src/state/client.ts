@@ -1,33 +1,58 @@
-function createData(name: string, sales: number) {
+function createSeller(name: string, sales: number) {
   return { name, sales };
 }
 
-const allRecords = [
-  createData("Anastácio", 159),
-  createData("João", 237),
-  createData("Reginaldo", 262),
-  createData("Horácia", 305),
-  createData("Erivaldo", 356),
-  createData("Godofreda", 160),
-  createData("Marquinhos", 238),
-  createData("Alfredo", 263),
-  createData("Heraldo", 306),
-  createData("Gertrudes", 357),
-  createData("Gorete", 159),
-  createData("Edemar", 237),
-  createData("Janete", 262),
-  createData("Erismar", 305),
-  createData("Maria", 356),
-  createData("João", 160),
-  createData("Mafalda", 238),
-  createData("Joacir", 263),
+const allSellers = [
+  createSeller("Anastácio", 159),
+  createSeller("João", 237),
+  createSeller("Reginaldo", 262),
+  createSeller("Horácia", 305),
+  createSeller("Erivaldo", 356),
+  createSeller("Godofreda", 160),
+  createSeller("Marquinhos", 238),
+  createSeller("Alfredo", 263),
+  createSeller("Heraldo", 306),
+  createSeller("Gertrudes", 357),
+  createSeller("Gorete", 159),
+  createSeller("Edemar", 237),
+  createSeller("Janete", 262),
+  createSeller("Erismar", 305),
+  createSeller("Maria", 356),
+  createSeller("João", 160),
+  createSeller("Mafalda", 238),
+  createSeller("Joacir", 263),
 ];
 
 const getSellers = (limit: number, page: number) => {
   return {
-    totalRows: allRecords.length,
-    data: allRecords.slice(page * limit, page * limit + limit),
+    totalRows: allSellers.length,
+    data: allSellers.slice(page * limit, page * limit + limit),
   };
 };
 
-export { getSellers };
+function createPrize(name: string, sales: number) {
+  return { name, sales };
+}
+
+const allPrizes = [
+  createPrize("Bicicleta", 3),
+  createPrize("Máquina de lavar", 1),
+  createPrize("Carro Honda Fit", 1),
+  createPrize("Voucher de restaurante", 20),
+  createPrize("Bola de futebol", 2),
+  createPrize("Geladeira", 2),
+  createPrize("Passeio de asa delta", 10),
+  createPrize("Camiseta do star wars", 5),
+  createPrize("Vinho", 4),
+  createPrize("Passeio de escuna", 10),
+  createPrize("Corte de cabelo", 8),
+];
+
+const getPrizes = (limit: number, page: number) => {
+  return {
+    totalRows: allPrizes.length,
+    data: allPrizes.slice(page * limit, page * limit + limit),
+  };
+};
+
+export { getSellers, getPrizes };
