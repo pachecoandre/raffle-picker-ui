@@ -10,7 +10,7 @@ export const StyledInput = styled.input`
   max-width: 200px;
   height: 18px;
   border-radius: 5px;
-  border: solid 1px #777;
+  border: ${(props) => (props.type === "file" ? "none" : "solid 1px #777")};
   padding: 8px;
   font-size: 14px;
   &:focus-visible {

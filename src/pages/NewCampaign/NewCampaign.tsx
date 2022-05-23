@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import Container from "../../components/Container";
+import Container from "components/Container";
 import Input from "components/Input";
 import Section from "components/Section";
 
