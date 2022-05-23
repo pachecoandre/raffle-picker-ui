@@ -10,12 +10,6 @@ export const Content = styled.div`
   max-width: 700px;
 `;
 
-export const ActionsArea = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 12px;
-`;
-
 export const StyledTable = styled.table`
   border-collapse: collapse;
   border: 1px solid #dddddd;

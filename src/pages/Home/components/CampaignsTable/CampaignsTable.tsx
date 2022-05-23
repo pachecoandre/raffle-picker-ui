@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ActionsArea, Content, StyledTable, Wrapper } from "./styles";
+import ActionsArea from 'components/ActionsArea'
+import { Content, StyledTable, Wrapper } from "./styles";
 
 interface Campaign {
   id: string;

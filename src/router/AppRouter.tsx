@@ -2,12 +2,13 @@ import { Routes, Route } from "react-router-dom";
 import { useUserContext } from "state";
 import PrivateRoute from "./PrivateRoute";
 import LoginPage from "pages/Login";
-import Home from "pages/Home";
-import NewCampaign from "pages/NewCampaign";
-import Campaign from "pages/Campaign";
+import HomePage from "pages/Home";
+import NewCampaignPage from "pages/NewCampaign";
+import CampaignPage from "pages/Campaign";
+import SellersPage from "pages/Sellers";
+import PrizesPage from "pages/Prizes";
+import NewPrizePage from "pages/NewPrize";
 import NavBar from "components/NavBar";
-import Sellers from "pages/Sellers";
-import Prizes from "pages/Prizes";
 import "../styles/App.css";
 
 function AppRouter() {
@@ -24,7 +25,7 @@ function AppRouter() {
           path={"/"}
           element={
             <PrivateRoute allowedRoles={["user", "admin"]}>
-              <Home />
+              <HomePage />
             </PrivateRoute>
           }
         />
@@ -32,7 +33,7 @@ function AppRouter() {
           path={"/campaigns/new"}
           element={
             <PrivateRoute allowedRoles={["admin"]}>
-              <NewCampaign />
+              <NewCampaignPage />
             </PrivateRoute>
           }
         />
@@ -40,7 +41,7 @@ function AppRouter() {
           path={"/campaigns/:campaignId"}
           element={
             <PrivateRoute allowedRoles={["user", "admin"]}>
-              <Campaign />
+              <CampaignPage />
             </PrivateRoute>
           }
         />
@@ -48,7 +49,7 @@ function AppRouter() {
           path={"/campaigns/:campaignId/sellers"}
           element={
             <PrivateRoute allowedRoles={["admin"]}>
-              <Sellers />
+              <SellersPage />
             </PrivateRoute>
           }
         />
@@ -56,7 +57,15 @@ function AppRouter() {
           path={"/campaigns/:campaignId/prizes"}
           element={
             <PrivateRoute allowedRoles={["admin"]}>
-              <Prizes />
+              <PrizesPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={"/campaigns/:campaignId/prizes/new"}
+          element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <NewPrizePage />
             </PrivateRoute>
           }
         />
