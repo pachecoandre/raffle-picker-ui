@@ -24,7 +24,7 @@ const HomePage = () => {
       </Section>
       <Section>
         <CampaignsTable
-          header={["Campanhas ativas", "Data de sorteio"]}
+          header={["Campanhas", "Data de sorteio"]}
           data={data}
         />
       </Section>

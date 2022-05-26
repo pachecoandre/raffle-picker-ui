@@ -6,6 +6,7 @@ import HomePage from "pages/Home";
 import NewCampaignPage from "pages/NewCampaign";
 import CampaignPage from "pages/Campaign";
 import SellersPage from "pages/Sellers";
+import SellerInvitation from "pages/SellerInvitation";
 import PrizesPage from "pages/Prizes";
 import NewPrizePage from "pages/NewPrize";
 import NavBar from "components/NavBar";
@@ -50,6 +51,14 @@ function AppRouter() {
           element={
             <PrivateRoute allowedRoles={["admin"]}>
               <SellersPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={"/campaigns/:campaignId/sellers/invite"}
+          element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <SellerInvitation />
             </PrivateRoute>
           }
         />

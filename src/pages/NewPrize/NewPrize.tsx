@@ -5,8 +5,10 @@ import Container from "components/Container";
 import Input from "components/Input";
 import Section from "components/Section";
 import Title from "components/Title";
+import FileInput from "components/FileInput";
+// import { FileInput } from "./styles";
 
-const Prizes: FC = () => {
+const NewPrize: FC = () => {
   const { campaignId } = useParams();
   const formik = useFormik({
     initialValues: {
@@ -43,7 +45,7 @@ const Prizes: FC = () => {
             onChange={formik.handleChange}
             value={formik.values.description}
           />
-          <Input
+          <FileInput
             name="image"
             label="Foto"
             type="file"
@@ -65,4 +67,4 @@ const Prizes: FC = () => {
   );
 };
 
-export default Prizes;
+export default NewPrize;
