@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 import GoBack from "components/GoBack";
@@ -7,6 +7,7 @@ import { Text, Wrapper } from "./styles";
 interface Props {
   backButton?: boolean;
   configUrl?: string;
+  children: ReactNode;
 }
 
 const Title: FC<Props> = ({ backButton, children, configUrl }) => {

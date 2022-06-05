@@ -8,7 +8,7 @@ interface Props {
   children: ReactNode;
 }
 
-const ModalBase: FC<Props> = ({ open = true, handleClose, children }) => {
+const ModalBase: FC<Props> = ({ open, handleClose, children }) => {
   return (
     <Modal
       open={open}
