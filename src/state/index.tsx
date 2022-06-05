@@ -1,10 +1,14 @@
-import { createContext, FC, useContext, useState } from "react";
+import { createContext, FC, ReactNode, useContext, useState } from "react";
 import { IUserContext } from "./types";
 import initialState from "./initialState";
 
+interface Props {
+  children: ReactNode;
+}
+
 const UserContext = createContext<IUserContext | any>(null);
 
-const ContextProvider: FC<{}> = ({ children }) => {
+const ContextProvider: FC<Props> = ({ children }) => {
   const [state, setState] = useState(initialState);
 
   const updateState = (props: typeof initialState) =>

@@ -1,16 +1,19 @@
+import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useUserContext } from "state";
+import Loader from "components/Loader";
 import PrivateRoute from "./PrivateRoute";
-import LoginPage from "pages/Login";
-import HomePage from "pages/Home";
-import NewCampaignPage from "pages/NewCampaign";
-import CampaignPage from "pages/Campaign";
-import SellersPage from "pages/Sellers";
-import SellerInvitation from "pages/SellerInvitation";
-import PrizesPage from "pages/Prizes";
-import NewPrizePage from "pages/NewPrize";
-import NavBar from "components/NavBar";
 import "../styles/App.css";
+
+const LoginPage = lazy(() => import("pages/Login"));
+const HomePage = lazy(() => import("pages/Home"));
+const NewCampaignPage = lazy(() => import("pages/NewCampaign"));
+const CampaignPage = lazy(() => import("pages/Campaign"));
+const SellersPage = lazy(() => import("pages/Sellers"));
+const SellerInvitation = lazy(() => import("pages/SellerInvitation"));
+const PrizesPage = lazy(() => import("pages/Prizes"));
+const NewPrizePage = lazy(() => import("pages/NewPrize"));
+const NavBar = lazy(() => import("components/NavBar"));
 
 function AppRouter() {
   const {
@@ -18,7 +21,7 @@ function AppRouter() {
   } = useUserContext();
 
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       {isLogged && <NavBar />}
       <Routes>
         <Route path={"/login"} element={<LoginPage />} />
@@ -79,7 +82,7 @@ function AppRouter() {
           }
         />
       </Routes>
-    </>
+    </Suspense>
   );
 }
 

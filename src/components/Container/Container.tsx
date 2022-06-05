@@ -1,8 +1,12 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
 import { Content, Wrapper } from "./styles";
 
-const Container: FC<{}> = ({ children }) => {
+interface Props {
+  children: ReactNode;
+}
+
+const Container: FC<Props> = ({ children }) => {
   return (
     <Wrapper>
       <Content>{children}</Content>

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { Style } from "util";
 import { WideDiv } from "./styled";
 
@@ -7,13 +7,10 @@ interface Props {
   mb?: number;
   justify?: string;
   style?: Style;
+  children?: ReactNode;
 }
 
-const Section: FC<Props> = ({
-  mt = 2,
-  mb = 4,
-  children,
-}) => (
+const Section: FC<Props> = ({ mt = 2, mb = 4, children }) => (
   <WideDiv
     style={{
       marginTop: `${mt * 8}px`,
