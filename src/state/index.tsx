@@ -9,15 +9,17 @@ interface Props {
 const UserContext = createContext<IUserContext | any>(null);
 
 const ContextProvider: FC<Props> = ({ children }) => {
-  const [state, setState] = useState(initialState);
+  const [globalState, setGlobalState] = useState(initialState);
 
-  const updateState = (props: typeof initialState) =>
-    setState({ ...state, ...props });
+  const addGlobalStateProp = (props: typeof initialState) =>
+    setGlobalState({ ...globalState, ...props });
 
-  const resetState = () => setState(initialState);
+  const resetState = () => setGlobalState(initialState);
 
   return (
-    <UserContext.Provider value={{ state, updateState, resetState }}>
+    <UserContext.Provider
+      value={{ state: globalState, setState: addGlobalStateProp, resetState }}
+    >
       {children}
     </UserContext.Provider>
   );

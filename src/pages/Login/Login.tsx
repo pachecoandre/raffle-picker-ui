@@ -5,9 +5,9 @@ import Container from "components/Container";
 
 const LoginPage: FC<{}> = () => {
   const navigate = useNavigate();
-  const { updateState } = useUserContext();
+  const { setState } = useUserContext();
   const handleLogin = () => {
-    updateState({ isLogged: true });
+    setState({ isLogged: true });
     navigate("/");
   };
   return (

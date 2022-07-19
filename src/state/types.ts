@@ -4,6 +4,6 @@ export type IState = typeof initialState;
 
 export type IUserContext = {
   state: IState;
-  updateState: (state: any) => void;
+  setState: (state: any) => void;
   resetState: () => void;
 };
