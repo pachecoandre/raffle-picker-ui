@@ -18,7 +18,6 @@ const Campaign: FC = () => {
     },
     sellers: 6,
     prizes: 8,
-    participants: 50,
   };
 
   return (
@@ -46,7 +45,6 @@ const Campaign: FC = () => {
                 Prêmios: {data.prizes}
               </Link>
             </Paper>
-            <Paper>Participantes: {data.participants}</Paper>
           </Grid>
         </Grid>
       </Section>
