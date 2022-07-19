@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Grid } from "@mui/material";
 import { currency } from "helpers/formatter";
 import Container from "components/Container";
@@ -9,6 +9,7 @@ import { Paper } from "./styles";
 
 const Campaign: FC = () => {
   const { campaignId } = useParams();
+  const navigate = useNavigate();
 
   const data = {
     sales: {
@@ -18,6 +19,10 @@ const Campaign: FC = () => {
     },
     sellers: 6,
     prizes: 8,
+  };
+
+  const handleNewRaffle = () => {
+    navigate(`/campaigns/${campaignId}/raffles/new`);
   };
 
   return (
@@ -49,7 +54,7 @@ const Campaign: FC = () => {
         </Grid>
       </Section>
       <Section>
-        <button>Cadastrar venda</button>
+        <button onClick={handleNewRaffle}>Cadastrar venda</button>
       </Section>
       <Section>
         <button>Realizar sorteio</button>

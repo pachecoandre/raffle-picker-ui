@@ -1,57 +1,54 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import Container from "components/Container";
 import Input from "components/Input";
 import Section from "components/Section";
-import Title from "components/Title";
-import FileInput from "components/FileInput";
-// import { FileInput } from "./styles";
 
-const NewPrize: FC = () => {
-  const { campaignId } = useParams();
+const NewRaffle: FC = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      name: "",
-      description: "",
-      image: "",
-      quantity: 1,
+      participantName: "",
+      phone: "",
+      email: "",
+      quantity: "",
     },
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-
+  const handleCancel = () => navigate(-1);
   return (
     <Container>
       <Section>
-        <Title backButton={true}>
-          Cadastrar novo prêmio na campanha {campaignId}
-        </Title>
+        <h1>Nova rifa</h1>
       </Section>
       <Section>
         <form onSubmit={formik.handleSubmit}>
           <Input
-            name="name"
-            label="Name"
+            label="Nome do participante"
+            id="participantName"
+            name="participantName"
             type="text"
             onChange={formik.handleChange}
-            value={formik.values.name}
+            value={formik.values.participantName}
           />
           <Input
-            name="description"
-            label="Descrição"
+            label="Telefone"
+            id="phone"
+            name="phone"
             type="text"
             onChange={formik.handleChange}
-            value={formik.values.description}
+            value={formik.values.phone}
           />
-          <FileInput
-            name="image"
-            label="Foto"
-            type="file"
-            accept="image/*"
+          <Input
+            label="E-mail"
+            id="email"
+            name="email"
+            type="text"
             onChange={formik.handleChange}
-            value={formik.values.image}
+            value={formik.values.email}
           />
           <Input
             name="quantity"
@@ -60,11 +57,14 @@ const NewPrize: FC = () => {
             onChange={formik.handleChange}
             value={formik.values.quantity}
           />
-          <button type="submit">Cadastrar</button>
+          <button type="button" onClick={handleCancel}>
+            Cancelar
+          </button>
+          <button type="submit">Criar</button>
         </form>
       </Section>
     </Container>
   );
 };
 
-export default NewPrize;
+export default NewRaffle;
