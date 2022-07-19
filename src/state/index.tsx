@@ -25,6 +25,6 @@ const ContextProvider: FC<Props> = ({ children }) => {
   );
 };
 
-const useUserContext = () => useContext<IUserContext>(UserContext);
+const useGlobalContext = () => useContext<IUserContext>(UserContext);
 
-export { ContextProvider, useUserContext };
+export { ContextProvider, useGlobalContext };

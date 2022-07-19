@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Navigate } from "react-router-dom";
-import { useUserContext } from "../state";
+import { useGlobalContext } from "../state";
 import AccessDenied from "./AccessDenied";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const PrivateRoute: FC<Props> = ({ children, allowedRoles }) => {
-  const { state } = useUserContext();
+  const { state } = useGlobalContext();
   const isLogged = state.isLogged;
   const hasAccess = () => allowedRoles.includes(state.role);
 

@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "state";
+import { useGlobalContext } from "state";
 import Container from "components/Container";
 
 const LoginPage: FC<{}> = () => {
   const navigate = useNavigate();
-  const { setState } = useUserContext();
+  const { setState } = useGlobalContext();
   const handleLogin = () => {
     setState({ isLogged: true });
     navigate("/");

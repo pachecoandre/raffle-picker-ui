@@ -1,21 +1,15 @@
 import { Link } from "react-router-dom";
-import { useUserContext } from "../../state";
+import { useGlobalContext } from "../../state";
+import { Nav } from "./styles";
 const NavBar = () => {
-  const { resetState } = useUserContext();
+  const { resetState } = useGlobalContext();
   const handleLogout = () => resetState();
 
   return (
-    <nav
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "8px",
-        backgroundColor: "#eeeeee",
-      }}
-    >
+    <Nav>
       <Link to={"/"}>Home</Link>
       <button onClick={handleLogout}>Log out</button>
-    </nav>
+    </Nav>
   );
 };
 
