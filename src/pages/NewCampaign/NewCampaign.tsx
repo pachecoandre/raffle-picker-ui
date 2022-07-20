@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import Container from "components/Container";
 import Input from "components/Input";
 import Section from "components/Section";
+import Button from "components/Button";
 
 const NewCampaign: FC = () => {
   const navigate = useNavigate();
@@ -49,10 +50,10 @@ const NewCampaign: FC = () => {
             onChange={formik.handleChange}
             value={formik.values.drawDate}
           />
-          <button type="button" onClick={handleCancel}>
+          <Button type="button" onClick={handleCancel}>
             Cancelar
-          </button>
-          <button type="submit">Criar</button>
+          </Button>
+          <Button type="submit">Criar</Button>
         </form>
       </Section>
     </Container>

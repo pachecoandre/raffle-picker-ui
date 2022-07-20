@@ -13,5 +13,6 @@ export const TableHead = styled(MuiTableHead)`
 export const TableCell = styled(MuiTableCell)`
   &.MuiTableCell-root {
     border-bottom: none;
+    color: ${({ theme }) => theme.text};
   }
 `;

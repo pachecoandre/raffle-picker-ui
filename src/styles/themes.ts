@@ -1,8 +1,8 @@
 const themes = {
   orange: {
     bg: "white",
-    marginBg: "#e8e8e8",
-    navBg: "#eee",
+    marginBg: "#eee",
+    navBg: "#e8e8e8",
     text: "#666",
     title: "darkorange",
     button: {
@@ -20,7 +20,7 @@ const themes = {
     bg: "#333",
     marginBg: "#2e2e2e",
     navBg: "#282828",
-    text: "#d8d8d8",
+    text: "#eee",
     title: "#ffa343",
     button: {
       bg: "#ff6700",

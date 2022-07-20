@@ -6,6 +6,7 @@ import Input from "components/Input";
 import Section from "components/Section";
 import Title from "components/Title";
 import FileInput from "components/FileInput";
+import Button from "components/Button";
 // import { FileInput } from "./styles";
 
 const NewPrize: FC = () => {
@@ -60,7 +61,7 @@ const NewPrize: FC = () => {
             onChange={formik.handleChange}
             value={formik.values.quantity}
           />
-          <button type="submit">Cadastrar</button>
+          <Button disabled type="submit">Cadastrar</Button>
         </form>
       </Section>
     </Container>

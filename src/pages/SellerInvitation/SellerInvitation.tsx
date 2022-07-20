@@ -6,6 +6,7 @@ import TextArea from "components/TextArea";
 import Section from "components/Section";
 import Title from "components/Title";
 import ModalBase from "components/ModalBase";
+import Button from "components/Button";
 
 const SellerInvitation: FC = () => {
   const { campaignId } = useParams();
@@ -42,13 +43,13 @@ const SellerInvitation: FC = () => {
             onChange={formik.handleChange}
             value={formik.values.email}
           />
-          <button type="submit">Convidar</button>
+          <Button type="submit">Convidar</Button>
         </form>
       </Section>
       <Section>Convites em aberto:</Section>
       <ModalBase open={modalIsOpen} handleClose={() => setModalIsOpen(false)}>
         <h1>Convite enviado</h1>
-        <button onClick={handleBack}>Voltar</button>
+        <Button onClick={handleBack}>Voltar</Button>
       </ModalBase>
     </Container>
   );

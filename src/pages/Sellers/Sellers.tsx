@@ -5,6 +5,7 @@ import Container from "components/Container";
 import Section from "components/Section";
 import Title from "components/Title";
 import SellersTable from "./components/Table";
+import Button from "components/Button";
 
 const Sellers: FC = () => {
   const { campaignId } = useParams();
@@ -17,11 +18,11 @@ const Sellers: FC = () => {
       </Section>
       <Section mb={1}>
         <ActionsArea>
-          <button
+          <Button
             onClick={() => navigate(`/campaigns/${campaignId}/sellers/invite`)}
           >
             Convidar
-          </button>
+          </Button>
         </ActionsArea>
       </Section>
       <Section>

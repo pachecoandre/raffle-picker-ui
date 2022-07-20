@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   padding-right: 8px;
   padding-left: 8px;
-  height: calc(100vh - 37px);
+  height: calc(100vh - 50px);
   background-color: ${({ theme }) => theme.marginBg};
 `;
 

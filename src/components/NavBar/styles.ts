@@ -5,4 +5,5 @@ export const Nav = styled.nav`
   justify-content: space-between;
   padding: 8px;
   background-color: ${({ theme }) => theme.navBg};
+  height: 34px;
 `;

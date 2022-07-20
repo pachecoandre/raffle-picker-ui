@@ -1,3 +1,4 @@
+import Button from "components/Button";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../../state";
 import { Nav } from "./styles";
@@ -8,7 +9,7 @@ const NavBar = () => {
   return (
     <Nav>
       <Link to={"/"}>Home</Link>
-      <button onClick={handleLogout}>Log out</button>
+      <Button onClick={handleLogout}>Log out</Button>
     </Nav>
   );
 };

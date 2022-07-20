@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "state";
 import Container from "components/Container";
+import Button from "components/Button";
 
 const LoginPage: FC<{}> = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const LoginPage: FC<{}> = () => {
   return (
     <Container>
       <h1>LogIn</h1>
-      <button onClick={handleLogin}>LogIn</button>
+      <Button onClick={handleLogin}>LogIn</Button>
     </Container>
   );
 };

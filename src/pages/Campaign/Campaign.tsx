@@ -6,6 +6,7 @@ import Container from "components/Container";
 import Section from "components/Section";
 import Title from "components/Title";
 import { Paper } from "./styles";
+import Button from "components/Button";
 
 const Campaign: FC = () => {
   const { campaignId } = useParams();
@@ -54,10 +55,10 @@ const Campaign: FC = () => {
         </Grid>
       </Section>
       <Section>
-        <button onClick={handleNewRaffle}>Cadastrar venda</button>
+        <Button onClick={handleNewRaffle}>Cadastrar venda</Button>
       </Section>
       <Section>
-        <button>Realizar sorteio</button>
+        <Button>Realizar sorteio</Button>
       </Section>
     </Container>
   );

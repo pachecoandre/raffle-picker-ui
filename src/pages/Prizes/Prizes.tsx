@@ -5,6 +5,7 @@ import Container from "components/Container";
 import Section from "components/Section";
 import Title from "components/Title";
 import PrizesTable from "./components/Table";
+import Button from "components/Button";
 
 const Prizes: FC = () => {
   const { campaignId } = useParams();
@@ -17,11 +18,11 @@ const Prizes: FC = () => {
       </Section>
       <Section mb={1}>
         <ActionsArea>
-          <button
+          <Button
             onClick={() => navigate(`/campaigns/${campaignId}/prizes/new`)}
           >
             Cadastrar Prêmio
-          </button>
+          </Button>
         </ActionsArea>
       </Section>
       <Section>

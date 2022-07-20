@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import ActionsArea from 'components/ActionsArea'
+import ActionsArea from "components/ActionsArea";
 import { Content, StyledTable, Wrapper } from "./styles";
+import Button from "components/Button";
 
 interface Campaign {
   id: string;
@@ -21,9 +22,9 @@ const CampaignsTable: FC<Props> = ({ title, header, data }) => {
     <Wrapper>
       <Content>
         <ActionsArea>
-          <button onClick={() => navigate("/campaigns/new")}>
+          <Button onClick={() => navigate("/campaigns/new")}>
             Criar campanha
-          </button>
+          </Button>
         </ActionsArea>
         {title && <span>{title}</span>}
         <StyledTable>
