@@ -34,23 +34,21 @@ const Campaign: FC = () => {
         </Title>
       </Section>
       <Section>
+        <p>Valor da rifa: {currency(data.sales.price)}</p>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <Paper>Arrecadado: {currency(data.sales.amount)}</Paper>
-            <Paper>Rifas vendidas: {data.sales.quantity}</Paper>
-            <Paper>Valor da rifa: {currency(data.sales.price)}</Paper>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Paper>
-              <Link to={`/campaigns/${campaignId}/sellers`}>
-                Vendedores: {data.sellers}
-              </Link>
-            </Paper>
+          <Grid item xs={12} sm={4}>
+            <Paper>{currency(data.sales.amount)} Arrecadados</Paper>
+            <Paper>{data.sales.quantity} Rifas vendidas</Paper>
             <Paper>
               <Link to={`/campaigns/${campaignId}/prizes`}>
                 Prêmios: {data.prizes}
               </Link>
             </Paper>
+            {/* <Paper>
+              <Link to={`/campaigns/${campaignId}/sellers`}>
+                Vendedores: {data.sellers}
+              </Link>
+            </Paper> */}
           </Grid>
         </Grid>
       </Section>
