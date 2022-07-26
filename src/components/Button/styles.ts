@@ -9,3 +9,13 @@ export const StyledButton = styled.button`
   padding: 8px 20px;
   cursor: pointer;
 `;
+
+export const LinkButton = styled.button`
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    color: ${({ theme }) => theme.button.border};
+  }
+`;
