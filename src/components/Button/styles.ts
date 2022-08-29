@@ -12,6 +12,7 @@ export const StyledButton = styled.button`
 
 export const LinkButton = styled.button`
   background-color: transparent;
+  color: ${({ theme }) => theme.text};
   border: none;
   text-decoration: underline;
   cursor: pointer;

@@ -20,7 +20,7 @@ const themes = {
     bg: "#333",
     marginBg: "#2e2e2e",
     navBg: "#282828",
-    text: "#eee",
+    text: "#ccc",
     title: "#ffa343",
     button: {
       bg: "#ff6700",

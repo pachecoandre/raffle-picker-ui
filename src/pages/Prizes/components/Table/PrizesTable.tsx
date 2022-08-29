@@ -1,10 +1,15 @@
 import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { getPrizes } from "state/client";
-import { TableCell, TableContainer, TableHead, Wrapper } from "./styles";
+import {
+  TableCell,
+  TableContainer,
+  TablePagination,
+  TableHead,
+  Wrapper,
+} from "./styles";
 import { LinkButton } from "components/Button/styles";
 
 const SellersTable = () => {
@@ -65,7 +70,7 @@ const SellersTable = () => {
                   </TableCell>
                   <TableCell align="center">{row.sales}</TableCell>
                   <TableCell align="right">
-                    <LinkButton>Editar</LinkButton>
+                    <LinkButton>Excluir</LinkButton>
                   </TableCell>
                 </TableRow>
               ))}
