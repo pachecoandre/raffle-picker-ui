@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Grid } from "@mui/material";
 import { currency } from "helpers/formatter";
 import Container from "components/Container";
 import Section from "components/Section";
 import Title from "components/Title";
-import { Paper } from "./styles";
+import { Link, Paper } from "./styles";
 import Button from "components/Button";
 
 const Campaign: FC = () => {

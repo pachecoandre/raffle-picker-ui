@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 const Paper = styled.div`
   border: solid 1px #dddddd;
@@ -7,4 +8,8 @@ const Paper = styled.div`
   padding: 12px;
 `;
 
-export { Paper };
+const Link = styled(ReactRouterLink)`
+  color: ${({ theme }) => theme.title};
+`;
+
+export { Link, Paper };
