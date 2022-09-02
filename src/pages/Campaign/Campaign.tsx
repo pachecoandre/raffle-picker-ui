@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { FC, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import { currency } from "helpers/formatter";
 import Container from "components/Container";
 import Section from "components/Section";
@@ -8,17 +8,31 @@ import Title from "components/Title";
 import { Link, Paper } from "./styles";
 import Button from "components/Button";
 
+interface ICampaign {
+  sellers?: number;
+  prizesCount?: number;
+  rafflesCount?: number;
+  rafflePrice?: number;
+  revenue?: number;
+}
+
 const Campaign: FC = () => {
   const { campaignId } = useParams();
-  const navigate = useNavigate();
 
-  const data = {
-    sellers: 6,
-    prizes: 8,
-    raffles: 400,
-    rafflePrice: 10,
-    revenue: 4000,
-  };
+  const [campaign, setCampaign] = useState<ICampaign>({});
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/v1/campaigns/${campaignId}`, {
+        headers: { Authorization: `Bearer ${campaignId}` },
+      })
+      .then(({ data }) => {
+        setCampaign(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <Container>
@@ -28,19 +42,17 @@ const Campaign: FC = () => {
         </Title>
       </Section>
       <Section>
-        <Paper>{currency(data.revenue)} Arrecadados</Paper>
+        <Paper>{currency(campaign.revenue)} Arrecadados</Paper>
       </Section>
-      <Section>
-        Valor da rifa: {currency(data.rafflePrice)}
-      </Section>
+      <Section>Valor da rifa: {currency(campaign.rafflePrice)}</Section>
       <Section>
         <Link to={`/campaigns/${campaignId}/prizes`}>
-          Prêmios: {data.prizes}
+          Prêmios: {campaign.prizesCount}
         </Link>
       </Section>
       <Section>
         <Link to={`/campaigns/${campaignId}/raffles`}>
-          Rifas vendidas: {data.raffles}
+          Rifas vendidas: {campaign.rafflesCount}
         </Link>
       </Section>
       <Section>
