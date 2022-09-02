@@ -13,17 +13,11 @@ const Campaign: FC = () => {
   const navigate = useNavigate();
 
   const data = {
-    sales: {
-      quantity: 400,
-      amount: 4000,
-      price: 10,
-    },
     sellers: 6,
     prizes: 8,
-  };
-
-  const handleNewRaffle = () => {
-    navigate(`/campaigns/${campaignId}/raffles/new`);
+    raffles: 400,
+    rafflePrice: 10,
+    revenue: 4000,
   };
 
   return (
@@ -34,26 +28,20 @@ const Campaign: FC = () => {
         </Title>
       </Section>
       <Section>
-        <p>Valor da rifa: {currency(data.sales.price)}</p>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={4}>
-            <Paper>{currency(data.sales.amount)} Arrecadados</Paper>
-            <Paper>{data.sales.quantity} Rifas vendidas</Paper>
-            <Paper>
-              <Link to={`/campaigns/${campaignId}/prizes`}>
-                Prêmios: {data.prizes}
-              </Link>
-            </Paper>
-            {/* <Paper>
-              <Link to={`/campaigns/${campaignId}/sellers`}>
-                Vendedores: {data.sellers}
-              </Link>
-            </Paper> */}
-          </Grid>
-        </Grid>
+        <Paper>{currency(data.revenue)} Arrecadados</Paper>
       </Section>
       <Section>
-        <Button onClick={handleNewRaffle}>Cadastrar venda</Button>
+        Valor da rifa: {currency(data.rafflePrice)}
+      </Section>
+      <Section>
+        <Link to={`/campaigns/${campaignId}/prizes`}>
+          Prêmios: {data.prizes}
+        </Link>
+      </Section>
+      <Section>
+        <Link to={`/campaigns/${campaignId}/raffles`}>
+          Rifas vendidas: {data.raffles}
+        </Link>
       </Section>
       <Section>
         <Button>Realizar sorteio</Button>

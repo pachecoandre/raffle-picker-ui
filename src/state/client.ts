@@ -1,34 +1,36 @@
-function createSeller(name: string, sales: number) {
+function createRaffle(name: string, sales: string) {
   return { name, sales };
 }
 
-const allSellers = [
-  createSeller("Anastácio", 159),
-  createSeller("João", 237),
-  createSeller("Reginaldo", 262),
-  createSeller("Horácia", 305),
-  createSeller("Erivaldo", 356),
-  createSeller("Godofreda", 160),
-  createSeller("Marquinhos", 238),
-  createSeller("Alfredo", 263),
-  createSeller("Heraldo", 306),
-  createSeller("Gertrudes", 357),
-  createSeller("Gorete", 159),
-  createSeller("Edemar", 237),
-  createSeller("Janete", 262),
-  createSeller("Erismar", 305),
-  createSeller("Maria", 356),
-  createSeller("João", 160),
-  createSeller("Mafalda", 238),
-  createSeller("Joacir", 263),
+const allRaffles = [
+  createRaffle("Anastácio", "48998456546"),
+  createRaffle("João", "11988451321"),
+  createRaffle("Reginaldo", "48998456546"),
+  createRaffle("Horácia", "11988451321"),
+  createRaffle("Erivaldo", "48998456546"),
+  createRaffle("Godofreda", "11988451321"),
+  createRaffle("Marquinhos", "48998456546"),
+  createRaffle("Alfredo", "11988451321"),
+  createRaffle("Heraldo", "48998456546"),
+  createRaffle("Gertrudes", "11988451321"),
+  createRaffle("Gorete", "48998456546"),
+  createRaffle("Edemar", "11988451321"),
+  createRaffle("Janete", "48998456546"),
+  createRaffle("Erismar", "11988451321"),
+  createRaffle("Maria", "48998456546"),
+  createRaffle("João", "11988451321"),
+  createRaffle("Mafalda", "48998456546"),
+  createRaffle("Joacir", "11988451321"),
 ];
 
-const getSellers = (limit: number, page: number) => {
+const getRaffles = (limit: number, page: number) => {
   return {
-    totalRows: allSellers.length,
-    data: allSellers.slice(page * limit, page * limit + limit),
+    totalRows: allRaffles.length,
+    data: allRaffles.slice(page * limit, page * limit + limit),
   };
 };
+
+const getSellers = getRaffles
 
 function createPrize(name: string, sales: number) {
   return { name, sales };
@@ -55,4 +57,4 @@ const getPrizes = (limit: number, page: number) => {
   };
 };
 
-export { getSellers, getPrizes };
+export { getRaffles, getSellers, getPrizes };

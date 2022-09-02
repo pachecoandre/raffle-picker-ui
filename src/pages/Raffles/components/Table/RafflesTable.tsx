@@ -2,7 +2,7 @@ import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
-import { getPrizes } from "state/client";
+import { getRaffles } from "state/client";
 import {
   TableCell,
   TableContainer,
@@ -12,16 +12,16 @@ import {
 } from "./styles";
 import { LinkButton } from "components/Button/styles";
 
-const SellersTable = () => {
+const RafflesTable = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [page, setPage] = React.useState(0);
-  const [prizes, setPrizes] = React.useState<any>([]);
+  const [raffles, setRaffles] = React.useState<any>([]);
   const [totalRows, setTotalRows] = React.useState(0);
 
   const handleChangePage = (_: unknown, newPage: number) => {
-    const { data, totalRows } = getPrizes(rowsPerPage, newPage);
+    const { data, totalRows } = getRaffles(rowsPerPage, newPage);
     setPage(newPage);
-    setPrizes(data);
+    setRaffles(data);
     setTotalRows(totalRows);
   };
 
@@ -33,17 +33,17 @@ const SellersTable = () => {
 
     if (newRowsPerPage * page > totalRows) {
       setPage(0);
-      const { data } = getPrizes(newRowsPerPage, 0);
-      setPrizes(data);
+      const { data } = getRaffles(newRowsPerPage, 0);
+      setRaffles(data);
     } else {
-      const { data } = getPrizes(newRowsPerPage, page);
-      setPrizes(data);
+      const { data } = getRaffles(newRowsPerPage, page);
+      setRaffles(data);
     }
   };
 
   React.useEffect(() => {
-    const { data, totalRows } = getPrizes(rowsPerPage, page);
-    setPrizes(data);
+    const { data, totalRows } = getRaffles(rowsPerPage, page);
+    setRaffles(data);
     setTotalRows(totalRows);
   }, []);
 
@@ -54,13 +54,13 @@ const SellersTable = () => {
           <Table size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>Prêmio</TableCell>
-                <TableCell align="center">Quantidade</TableCell>
+                <TableCell>Nome</TableCell>
+                <TableCell align="center">Telefone</TableCell>
                 <TableCell align="right"></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {prizes.map((row: any) => (
+              {raffles.map((row: any) => (
                 <TableRow
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -92,4 +92,4 @@ const SellersTable = () => {
   );
 };
 
-export default SellersTable;
+export default RafflesTable;
