@@ -1,8 +1,12 @@
 import * as React from "react";
+import { useParams } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
+
 import { getRaffles } from "state/client";
+import { Raffle } from "../../types";
+
 import {
   TableCell,
   TableContainer,
@@ -13,19 +17,26 @@ import {
 import { LinkButton } from "components/Button/styles";
 
 const RafflesTable = () => {
+  const { campaignId = "" } = useParams();
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [page, setPage] = React.useState(0);
   const [raffles, setRaffles] = React.useState<any>([]);
   const [totalRows, setTotalRows] = React.useState(0);
 
-  const handleChangePage = (_: unknown, newPage: number) => {
-    const { data, totalRows } = getRaffles(rowsPerPage, newPage);
+  const handleChangePage = async (_: unknown, newPage: number) => {
+    console.log("newPage", newPage);
+
+    const { data, totalRows } = await getRaffles(
+      campaignId,
+      newPage,
+      rowsPerPage
+    );
     setPage(newPage);
     setRaffles(data);
     setTotalRows(totalRows);
   };
 
-  const handleChangeRowsPerPage = (
+  const handleChangeRowsPerPage = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const newRowsPerPage = parseInt(event.target.value, 10);
@@ -33,19 +44,21 @@ const RafflesTable = () => {
 
     if (newRowsPerPage * page > totalRows) {
       setPage(0);
-      const { data } = getRaffles(newRowsPerPage, 0);
+      const { data } = await getRaffles(campaignId, 1, newRowsPerPage);
       setRaffles(data);
     } else {
-      const { data } = getRaffles(newRowsPerPage, page);
+      const { data } = await getRaffles(campaignId, page, newRowsPerPage);
       setRaffles(data);
     }
   };
 
   React.useEffect(() => {
-    const { data, totalRows } = getRaffles(rowsPerPage, page);
-    setRaffles(data);
-    setTotalRows(totalRows);
-  }, []);
+    getRaffles(campaignId, page, rowsPerPage).then(({ data, totalRows }) => {
+      getRaffles(campaignId, page, rowsPerPage);
+      setRaffles(data);
+      setTotalRows(totalRows);
+    });
+  }, [campaignId]);
 
   return (
     <Wrapper>
@@ -60,15 +73,15 @@ const RafflesTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {raffles.map((row: any) => (
+              {raffles.map((row: Raffle) => (
                 <TableRow
-                  key={row.name}
+                  key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    {row.participantName}
                   </TableCell>
-                  <TableCell align="center">{row.sales}</TableCell>
+                  <TableCell align="center">{row.participantPhone}</TableCell>
                   <TableCell align="right">
                     <LinkButton>Excluir</LinkButton>
                   </TableCell>

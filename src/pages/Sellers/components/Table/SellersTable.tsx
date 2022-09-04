@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useParams } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
@@ -8,19 +9,24 @@ import { getSellers } from "state/client";
 import { TableCell, TableHead } from "./styles";
 
 const SellersTable = () => {
+  const { campaignId = "" } = useParams();
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [page, setPage] = React.useState(0);
   const [sellers, setSellers] = React.useState<any>([]);
   const [totalRows, setTotalRows] = React.useState(0);
 
-  const handleChangePage = (event: unknown, newPage: number) => {
-    const { data, totalRows } = getSellers(rowsPerPage, newPage);
+  const handleChangePage = async (event: unknown, newPage: number) => {
+    const { data, totalRows } = await getSellers(
+      campaignId,
+      rowsPerPage,
+      newPage
+    );
     setPage(newPage);
     setSellers(data);
     setTotalRows(totalRows);
   };
 
-  const handleChangeRowsPerPage = (
+  const handleChangeRowsPerPage = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const newRowsPerPage = parseInt(event.target.value, 10);
@@ -28,18 +34,24 @@ const SellersTable = () => {
 
     if (newRowsPerPage * page > totalRows) {
       setPage(0);
-      const { data } = getSellers(newRowsPerPage, 0);
+      const { data } = await getSellers(campaignId, newRowsPerPage, 0);
       setSellers(data);
     } else {
-      const { data } = getSellers(newRowsPerPage, page);
+      const { data } = await getSellers(campaignId, newRowsPerPage, page);
       setSellers(data);
     }
   };
 
   React.useEffect(() => {
-    const { data, totalRows } = getSellers(rowsPerPage, page);
-    setSellers(data);
-    setTotalRows(totalRows);
+    (async () => {
+      const { data, totalRows } = await getSellers(
+        campaignId,
+        rowsPerPage,
+        page
+      );
+      setSellers(data);
+      setTotalRows(totalRows);
+    })();
   }, []);
 
   return (

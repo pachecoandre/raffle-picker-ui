@@ -29,7 +29,7 @@ const Campaign: FC = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [campaignId]);
 
   return (
     <Container>
