@@ -14,7 +14,7 @@ const Raffles: FC = () => {
   return (
     <Container>
       <Section>
-        <Title backButton={true}>Rifas vendidas {campaignId}</Title>
+        <Title backButton={true}>Rifas vendidas de campanha {campaignId}</Title>
       </Section>
       <Section mb={1}>
         <ActionsArea>

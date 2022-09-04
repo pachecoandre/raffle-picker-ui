@@ -24,8 +24,6 @@ const RafflesTable = () => {
   const [totalRows, setTotalRows] = React.useState(0);
 
   const handleChangePage = async (_: unknown, newPage: number) => {
-    console.log("newPage", newPage);
-
     const { data, totalRows } = await getRaffles(
       campaignId,
       newPage,

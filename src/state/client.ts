@@ -1,4 +1,5 @@
 import axios from "axios";
+import { PrizesResult } from "../pages/Prizes/types";
 import { RafflesResult } from "../pages/Raffles/types";
 
 const client = axios.create({
@@ -27,6 +28,17 @@ const getRaffles = async (
   return data;
 };
 
+const getPrizes = async (
+  campaignId: string,
+  page: number,
+  limit: number
+): Promise<PrizesResult> => {
+  const { data } = await client.get(
+    `/campaigns/${campaignId}/prizes?page=${page}&limit=${limit}`
+  );
+  return data;
+};
+
 const allPrizes = [
   createPrize("Bicicleta", 3),
   createPrize("Máquina de lavar", 1),
@@ -45,7 +57,7 @@ function createPrize(name: string, sales: number) {
   return { name, sales };
 }
 
-const getPrizes = (limit: number, page: number) => {
+const getPrizess = (limit: number, page: number) => {
   return {
     totalRows: allPrizes.length,
     data: allPrizes.slice(page * limit, page * limit + limit),
