@@ -5,9 +5,13 @@ import { Content, StyledTable, Wrapper } from "./styles";
 import Button from "components/Button";
 
 interface Campaign {
-  id: string;
+  id: number;
   name: string;
-  drawDate: string;
+  estimated_draw_date: string;
+  draw_date: string;
+  raffle_price: number;
+  user_id: number;
+  role: string;
 }
 
 interface Props {
@@ -41,7 +45,7 @@ const CampaignsTable: FC<Props> = ({ title, header, data }) => {
                 <td>
                   <Link to={`/campaigns/${row.id}`}>{row.name}</Link>
                 </td>
-                <td>{row.drawDate}</td>
+                <td>{row.estimated_draw_date}</td>
               </tr>
             ))}
           </tbody>

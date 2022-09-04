@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { getCampaign } from "../../state/client";
 import { currency } from "helpers/formatter";
 import Container from "components/Container";
 import Section from "components/Section";
@@ -22,12 +22,9 @@ const Campaign: FC = () => {
   const [campaign, setCampaign] = useState<ICampaign>({});
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8000/v1/campaigns/${campaignId}`, {
-        headers: { Authorization: `Bearer ${campaignId}` },
-      })
-      .then(({ data }) => {
-        setCampaign(data);
+    getCampaign(campaignId)
+      .then((result) => {
+        setCampaign(result);
       })
       .catch((err) => {
         console.log(err);

@@ -1,22 +1,20 @@
 import Container from "components/Container";
 import Section from "components/Section";
 
+import { getCampaigns } from "state/client";
 import { Description } from "./styles";
 import CampaignsTable from "pages/Home/components/CampaignsTable";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
-  const data = [
-    {
-      id: "5",
-      name: "Ação Social",
-      drawDate: "10/10/2022",
-    },
-    {
-      id: "8",
-      name: "Formatura",
-      drawDate: "12/10/2022",
-    },
-  ];
+  const [campaigns, setCampaigns] = useState([]);
+
+  useEffect(() => {
+    getCampaigns().then((result) => {
+      setCampaigns(result);
+    });
+  }, []);
+
   return (
     <Container>
       <Section mb={4}>
@@ -25,7 +23,7 @@ const HomePage = () => {
       <Section>
         <CampaignsTable
           header={["Campanhas", "Data de sorteio"]}
-          data={data}
+          data={campaigns}
         />
       </Section>
     </Container>

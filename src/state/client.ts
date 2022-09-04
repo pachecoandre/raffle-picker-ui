@@ -1,6 +1,19 @@
-function createRaffle(name: string, sales: string) {
-  return { name, sales };
-}
+import axios from "axios";
+
+const client = axios.create({
+  baseURL: "http://localhost:8000/v1",
+  headers: { Authorization: `Bearer 1` },
+});
+
+const getCampaigns = async () => {
+  const { data } = await client.get("/campaigns");
+  return data;
+};
+
+const getCampaign = async (campaignId: string = "") => {
+  const { data } = await client.get(`/campaigns/${campaignId}`);
+  return data;
+};
 
 const allRaffles = [
   createRaffle("Anastácio", "48998456546"),
@@ -23,19 +36,6 @@ const allRaffles = [
   createRaffle("Joacir", "11988451321"),
 ];
 
-const getRaffles = (limit: number, page: number) => {
-  return {
-    totalRows: allRaffles.length,
-    data: allRaffles.slice(page * limit, page * limit + limit),
-  };
-};
-
-const getSellers = getRaffles
-
-function createPrize(name: string, sales: number) {
-  return { name, sales };
-}
-
 const allPrizes = [
   createPrize("Bicicleta", 3),
   createPrize("Máquina de lavar", 1),
@@ -50,6 +50,21 @@ const allPrizes = [
   createPrize("Corte de cabelo", 8),
 ];
 
+function createRaffle(name: string, sales: string) {
+  return { name, sales };
+}
+
+function createPrize(name: string, sales: number) {
+  return { name, sales };
+}
+
+const getRaffles = (limit: number, page: number) => {
+  return {
+    totalRows: allRaffles.length,
+    data: allRaffles.slice(page * limit, page * limit + limit),
+  };
+};
+
 const getPrizes = (limit: number, page: number) => {
   return {
     totalRows: allPrizes.length,
@@ -57,4 +72,6 @@ const getPrizes = (limit: number, page: number) => {
   };
 };
 
-export { getRaffles, getSellers, getPrizes };
+const getSellers = getRaffles;
+
+export { getCampaign, getCampaigns, getRaffles, getPrizes, getSellers };
