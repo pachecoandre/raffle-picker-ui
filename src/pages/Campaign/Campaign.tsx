@@ -43,13 +43,13 @@ const Campaign: FC = () => {
       </Section>
       <Section>Valor da rifa: {currency(campaign.rafflePrice)}</Section>
       <Section>
-        <Link to={`/campaigns/${campaignId}/prizes`}>
-          Prêmios: {campaign.prizesCount}
+        <Link to={`/campaigns/${campaignId}/raffles`}>
+          Rifas vendidas: {campaign.rafflesCount}
         </Link>
       </Section>
       <Section>
-        <Link to={`/campaigns/${campaignId}/raffles`}>
-          Rifas vendidas: {campaign.rafflesCount}
+        <Link to={`/campaigns/${campaignId}/prizes`}>
+          Prêmios: {campaign.prizesCount}
         </Link>
       </Section>
       <Section>
