@@ -51,8 +51,6 @@ const SellersTable = () => {
 
   React.useEffect(() => {
     getPrizes(campaignId, page, rowsPerPage).then(({ data, totalRows }) => {
-      console.log("data", data)
-      console.log("totalRows", totalRows)
       setPrizes(data);
       setTotalRows(totalRows);
     });

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import Container from "components/Container";
 import Input from "components/Input";
@@ -7,10 +7,11 @@ import Section from "components/Section";
 import Title from "components/Title";
 import FileInput from "components/FileInput";
 import Button from "components/Button";
-// import { FileInput } from "./styles";
+import { createPrize } from "state/client";
 
 const NewPrize: FC = () => {
-  const { campaignId } = useParams();
+  const { campaignId = "" } = useParams();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -19,7 +20,11 @@ const NewPrize: FC = () => {
       quantity: 1,
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      createPrize(campaignId, values).then(() => {
+        setTimeout(() => {
+          navigate(-1);
+        }, 1500);
+      });
     },
   });
 
@@ -61,7 +66,7 @@ const NewPrize: FC = () => {
             onChange={formik.handleChange}
             value={formik.values.quantity}
           />
-          <Button disabled type="submit">Cadastrar</Button>
+          <Button type="submit">Cadastrar</Button>
         </form>
       </Section>
     </Container>

@@ -5,7 +5,7 @@ import Container from "components/Container";
 import Input from "components/Input";
 import Section from "components/Section";
 import Button from "components/Button";
-import { createRaffle } from "../../state/client";
+import { createRaffles } from "../../state/client";
 
 const NewRaffle: FC = () => {
   const navigate = useNavigate();
@@ -15,10 +15,10 @@ const NewRaffle: FC = () => {
       name: "",
       phone: "",
       email: "",
-      quantity: "",
+      quantity: 1,
     },
     onSubmit: async (values) => {
-      createRaffle(campaignId, values).then(() => {
+      createRaffles(campaignId, values).then(() => {
         alert("Rifa criada");
       });
     },
