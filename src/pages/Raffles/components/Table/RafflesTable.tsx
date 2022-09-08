@@ -52,11 +52,18 @@ const RafflesTable = () => {
 
   React.useEffect(() => {
     getRaffles(campaignId, page, rowsPerPage).then(({ data, totalRows }) => {
+      console.log("campaignId", campaignId);
+      console.log("totalRows", totalRows);
+
       getRaffles(campaignId, page, rowsPerPage);
       setRaffles(data);
       setTotalRows(totalRows);
     });
   }, [campaignId]);
+
+  if (raffles.length === 0) {
+    return null;
+  }
 
   return (
     <Wrapper>

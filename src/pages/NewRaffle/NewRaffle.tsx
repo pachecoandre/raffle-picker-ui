@@ -1,22 +1,26 @@
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import Container from "components/Container";
 import Input from "components/Input";
 import Section from "components/Section";
 import Button from "components/Button";
+import { createRaffle } from "../../state/client";
 
 const NewRaffle: FC = () => {
   const navigate = useNavigate();
+  const { campaignId = "" } = useParams();
   const formik = useFormik({
     initialValues: {
-      participantName: "",
+      name: "",
       phone: "",
       email: "",
       quantity: "",
     },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      createRaffle(campaignId, values).then(() => {
+        alert("Rifa criada");
+      });
     },
   });
   const handleCancel = () => navigate(-1);
@@ -29,11 +33,11 @@ const NewRaffle: FC = () => {
         <form onSubmit={formik.handleSubmit}>
           <Input
             label="Nome do participante"
-            id="participantName"
-            name="participantName"
+            id="name"
+            name="name"
             type="text"
             onChange={formik.handleChange}
-            value={formik.values.participantName}
+            value={formik.values.name}
           />
           <Input
             label="Telefone"
