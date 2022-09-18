@@ -6,6 +6,7 @@ import Input from "components/Input";
 import Section from "components/Section";
 import Button from "components/Button";
 import { createCampaign } from "client";
+import Content from "components/Content";
 
 const NewCampaign: FC = () => {
   const navigate = useNavigate();
@@ -29,41 +30,43 @@ const NewCampaign: FC = () => {
   const handleCancel = () => navigate(-1);
   return (
     <Container>
-      <Section>
-        <h1>Nova campanha</h1>
-      </Section>
-      <Section>
-        <form onSubmit={formik.handleSubmit}>
-          <Input
-            label="Nome"
-            id="name"
-            name="name"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.name}
-          />
-          <Input
-            label="Valor da rifa"
-            id="price"
-            name="price"
-            type="number"
-            onChange={formik.handleChange}
-            value={formik.values.price}
-          />
-          <Input
-            label="Data prevista para o sorteio"
-            id="drawDate"
-            name="drawDate"
-            type="date"
-            onChange={formik.handleChange}
-            value={formik.values.drawDate}
-          />
-          <Button type="button" onClick={handleCancel}>
-            Cancelar
-          </Button>
-          <Button type="submit">Criar</Button>
-        </form>
-      </Section>
+      <Content justifyCenter>
+        <Section>
+          <h1>Nova campanha</h1>
+        </Section>
+        <Section>
+          <form onSubmit={formik.handleSubmit}>
+            <Input
+              label="Nome"
+              id="name"
+              name="name"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.name}
+            />
+            <Input
+              label="Valor da rifa"
+              id="price"
+              name="price"
+              type="number"
+              onChange={formik.handleChange}
+              value={formik.values.price}
+            />
+            <Input
+              label="Data prevista para o sorteio"
+              id="drawDate"
+              name="drawDate"
+              type="date"
+              onChange={formik.handleChange}
+              value={formik.values.drawDate}
+            />
+            <Button type="button" onClick={handleCancel}>
+              Cancelar
+            </Button>
+            <Button type="submit">Criar</Button>
+          </form>
+        </Section>
+      </Content>
     </Container>
   );
 };

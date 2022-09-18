@@ -39,7 +39,7 @@ const Campaign: FC = () => {
           Campanha {campaignId}
         </Title>
       </Section>
-      <Content justifyCenter={true}>
+      <Content justifyCenter>
         <Section>
           <Paper>{currency(campaign.revenue)} Arrecadados</Paper>
         </Section>
