@@ -1,10 +1,10 @@
+import { useEffect, useState } from "react";
 import Container from "components/Container";
 import Section from "components/Section";
 
 import { getCampaigns } from "state/client";
 import { Description } from "./styles";
 import CampaignsTable from "pages/Home/components/CampaignsTable";
-import { useEffect, useState } from "react";
 
 const HomePage = () => {
   const [campaigns, setCampaigns] = useState([]);

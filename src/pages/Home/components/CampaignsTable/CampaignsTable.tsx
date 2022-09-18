@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ActionsArea from "components/ActionsArea";
-import { Content, StyledTable, Wrapper } from "./styles";
+import { StyledTable } from "./styles";
 import Button from "components/Button";
+import Content from "components/Content";
 
 interface Campaign {
   id: number;
@@ -23,35 +24,33 @@ interface Props {
 const CampaignsTable: FC<Props> = ({ title, header, data }) => {
   const navigate = useNavigate();
   return (
-    <Wrapper>
-      <Content>
-        <ActionsArea>
-          <Button onClick={() => navigate("/campaigns/new")}>
-            Criar campanha
-          </Button>
-        </ActionsArea>
-        {title && <span>{title}</span>}
-        <StyledTable>
-          <thead>
-            <tr>
-              {header.map((label) => (
-                <th key={label}>{label}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((row) => (
-              <tr key={row.id}>
-                <td>
-                  <Link to={`/campaigns/${row.id}`}>{row.name}</Link>
-                </td>
-                <td>{row.estimated_draw_date}</td>
-              </tr>
+    <Content>
+      <ActionsArea>
+        <Button onClick={() => navigate("/campaigns/new")}>
+          Criar campanha
+        </Button>
+      </ActionsArea>
+      {title && <span>{title}</span>}
+      <StyledTable>
+        <thead>
+          <tr>
+            {header.map((label) => (
+              <th key={label}>{label}</th>
             ))}
-          </tbody>
-        </StyledTable>
-      </Content>
-    </Wrapper>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row) => (
+            <tr key={row.id}>
+              <td>
+                <Link to={`/campaigns/${row.id}`}>{row.name}</Link>
+              </td>
+              <td>{row.estimated_draw_date}</td>
+            </tr>
+          ))}
+        </tbody>
+      </StyledTable>
+    </Content>
   );
 };
 

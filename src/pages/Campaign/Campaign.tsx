@@ -5,6 +5,7 @@ import { currency } from "helpers/formatter";
 import Container from "components/Container";
 import Section from "components/Section";
 import Title from "components/Title";
+import Content from "components/Content";
 import { Link, Paper } from "./styles";
 import Button from "components/Button";
 
@@ -38,23 +39,25 @@ const Campaign: FC = () => {
           Campanha {campaignId}
         </Title>
       </Section>
-      <Section>
-        <Paper>{currency(campaign.revenue)} Arrecadados</Paper>
-      </Section>
-      <Section>Valor da rifa: {currency(campaign.rafflePrice)}</Section>
-      <Section>
-        <Link to={`/campaigns/${campaignId}/raffles`}>
-          Rifas vendidas: {campaign.rafflesCount}
-        </Link>
-      </Section>
-      <Section>
-        <Link to={`/campaigns/${campaignId}/prizes`}>
-          Prêmios: {campaign.prizesCount}
-        </Link>
-      </Section>
-      <Section>
-        <Button>Realizar sorteio</Button>
-      </Section>
+      <Content justifyCenter={true}>
+        <Section>
+          <Paper>{currency(campaign.revenue)} Arrecadados</Paper>
+        </Section>
+        <Section>Valor da rifa: {currency(campaign.rafflePrice)}</Section>
+        <Section>
+          <Link to={`/campaigns/${campaignId}/raffles`}>
+            Rifas vendidas: {campaign.rafflesCount}
+          </Link>
+        </Section>
+        <Section>
+          <Link to={`/campaigns/${campaignId}/prizes`}>
+            Prêmios: {campaign.prizesCount}
+          </Link>
+        </Section>
+        <Section>
+          <Button>Realizar sorteio</Button>
+        </Section>
+      </Content>
     </Container>
   );
 };
