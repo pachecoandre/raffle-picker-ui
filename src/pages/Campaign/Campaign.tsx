@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getCampaign } from "../../state/client";
+import { getCampaign } from "../../client";
 import { currency } from "helpers/formatter";
 import Container from "components/Container";
 import Section from "components/Section";

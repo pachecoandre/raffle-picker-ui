@@ -3,6 +3,7 @@ import { PrizesResult } from "../pages/Prizes/types";
 import { RafflesResult } from "../pages/Raffles/types";
 import { RafflePayload } from "../pages/NewRaffle/types";
 import { PrizePayload } from "pages/NewPrize/types";
+import { CampaignPayload } from "pages/NewCampaign/types";
 
 const client = axios.create({
   baseURL: "http://localhost:8000/v1",
@@ -17,6 +18,10 @@ const getCampaigns = async () => {
 const getCampaign = async (campaignId: string = "") => {
   const { data } = await client.get(`/campaigns/${campaignId}`);
   return data;
+};
+
+const createCampaign = async (payload: CampaignPayload) => {
+  await client.post("/campaigns", payload);
 };
 
 const getRaffles = async (
@@ -54,6 +59,7 @@ const getSellers = getRaffles;
 export {
   getCampaign,
   getCampaigns,
+  createCampaign,
   getRaffles,
   createRaffles,
   getPrizes,

@@ -5,7 +5,7 @@ import Container from "components/Container";
 import Input from "components/Input";
 import Section from "components/Section";
 import Button from "components/Button";
-import { createRaffles } from "../../state/client";
+import { createRaffles } from "../../client";
 
 const NewRaffle: FC = () => {
   const navigate = useNavigate();

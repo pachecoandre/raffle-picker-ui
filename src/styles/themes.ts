@@ -1,5 +1,8 @@
 const themes = {
   orange: {
+    input: {
+      bg: "white",
+    },
     bg: "white",
     marginBg: "#eee",
     navBg: "#e8e8e8",
@@ -17,6 +20,10 @@ const themes = {
     card: "#eee",
   },
   orangeDarkMode: {
+    input: {
+      bg: "#383838",
+      color: "white",
+    },
     bg: "#333",
     marginBg: "#2e2e2e",
     navBg: "#282828",

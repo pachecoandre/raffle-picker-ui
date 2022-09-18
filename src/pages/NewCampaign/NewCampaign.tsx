@@ -5,6 +5,7 @@ import Container from "components/Container";
 import Input from "components/Input";
 import Section from "components/Section";
 import Button from "components/Button";
+import { createCampaign } from "client";
 
 const NewCampaign: FC = () => {
   const navigate = useNavigate();
@@ -15,7 +16,14 @@ const NewCampaign: FC = () => {
       drawDate: "",
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      if (isNaN(Number(values.price))) {
+        return alert("Por favor, informe um preço válido");
+      }
+      createCampaign({
+        name: values.name,
+        rafflePrice: Number(values.price),
+        estimatedDrawDate: values.drawDate,
+      }).then(() => alert("Campanha criada"));
     },
   });
   const handleCancel = () => navigate(-1);

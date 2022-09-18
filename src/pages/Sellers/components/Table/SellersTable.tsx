@@ -5,7 +5,7 @@ import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { getSellers } from "state/client";
+import { getSellers } from "client";
 import { TableCell, TableHead } from "./styles";
 
 const SellersTable = () => {

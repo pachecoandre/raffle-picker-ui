@@ -4,7 +4,7 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 
-import { getPrizes } from "state/client";
+import { getPrizes } from "client";
 import {
   TableCell,
   TableContainer,

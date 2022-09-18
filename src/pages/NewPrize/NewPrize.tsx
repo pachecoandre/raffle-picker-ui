@@ -7,7 +7,7 @@ import Section from "components/Section";
 import Title from "components/Title";
 import FileInput from "components/FileInput";
 import Button from "components/Button";
-import { createPrize } from "state/client";
+import { createPrize } from "client";
 
 const NewPrize: FC = () => {
   const { campaignId = "" } = useParams();

@@ -4,7 +4,7 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 
-import { getRaffles } from "state/client";
+import { getRaffles } from "client";
 import { Raffle } from "../../types";
 
 import {

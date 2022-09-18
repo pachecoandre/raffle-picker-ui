@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Container from "components/Container";
 import Section from "components/Section";
 
-import { getCampaigns } from "state/client";
+import { getCampaigns } from "client";
 import { Description } from "./styles";
 import CampaignsTable from "pages/Home/components/CampaignsTable";
 

@@ -5,6 +5,8 @@ export const Label = styled.label`
 `;
 
 export const StyledInput = styled.input`
+  background-color: ${({ theme }) => theme.input.bg};
+  color: ${({theme}) => theme.input.color};
   display: block;
   width: 100%;
   max-width: 200px;
