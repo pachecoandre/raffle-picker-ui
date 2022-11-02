@@ -39,6 +39,10 @@ const createRaffles = async (campaignId: string, payload: RafflePayload) => {
   await client.post(`/campaigns/${campaignId}/raffles`, payload);
 };
 
+const deleteRaffle = async (campaignId: string, id: number) => {
+  await client.delete(`/campaigns/${campaignId}/raffles/${id}`)
+}
+
 const getPrizes = async (
   campaignId: string,
   page: number,
@@ -62,6 +66,7 @@ export {
   createCampaign,
   getRaffles,
   createRaffles,
+  deleteRaffle,
   getPrizes,
   createPrize,
   getSellers,

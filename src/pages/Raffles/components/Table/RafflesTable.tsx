@@ -1,10 +1,10 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
-
-import { getRaffles } from "client";
+import Button from "components/Button";
+import { getRaffles, deleteRaffle } from "client";
 import { Raffle } from "../../types";
 
 import {
@@ -15,13 +15,20 @@ import {
   Wrapper,
 } from "./styles";
 import { LinkButton } from "components/Button/styles";
+import ModalBase from "components/ModalBase";
 
 const RafflesTable = () => {
   const { campaignId = "" } = useParams();
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [page, setPage] = React.useState(0);
-  const [raffles, setRaffles] = React.useState<any>([]);
-  const [totalRows, setTotalRows] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [page, setPage] = useState(0);
+  const [raffles, setRaffles] = useState<any>([]);
+  const [totalRows, setTotalRows] = useState(0);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [raffleToBeDeleted, setRaffleToBeDeleted] = useState<Raffle | null>(
+    null
+  );
+
+  const fetchRaffles = () => {};
 
   const handleChangePage = async (_: unknown, newPage: number) => {
     const { data, totalRows } = await getRaffles(
@@ -50,13 +57,34 @@ const RafflesTable = () => {
     }
   };
 
-  React.useEffect(() => {
+  const handleModal = (row: Raffle) => {
+    setRaffleToBeDeleted(row);
+    setModalIsOpen(true);
+  };
+
+  const handleDelete = (id: number) => {
+    setModalIsOpen(false);
+    deleteRaffle(campaignId, id).then(() => {
+      setRaffles(raffles.filter((raffle: Raffle) => raffle.id !== id));
+    });
+  };
+
+  useEffect(() => {
     getRaffles(campaignId, page, rowsPerPage).then(({ data, totalRows }) => {
-      getRaffles(campaignId, page, rowsPerPage);
       setRaffles(data);
       setTotalRows(totalRows);
     });
   }, [campaignId]);
+
+  useEffect(() => {    
+    if (page > 0 && raffles.length === 0) {
+      setPage(page - 1);
+      getRaffles(campaignId, page - 1, rowsPerPage).then(({ data, totalRows }) => {
+        setRaffles(data);
+        setTotalRows(totalRows);
+      });
+    }
+  }, [raffles]);
 
   if (raffles.length === 0) {
     return null;
@@ -85,7 +113,9 @@ const RafflesTable = () => {
                   </TableCell>
                   <TableCell align="center">{row.participantPhone}</TableCell>
                   <TableCell align="right">
-                    <LinkButton>Excluir</LinkButton>
+                    <LinkButton onClick={() => handleModal(row)}>
+                      Excluir
+                    </LinkButton>
                   </TableCell>
                 </TableRow>
               ))}
@@ -103,6 +133,11 @@ const RafflesTable = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </div>
+      <ModalBase open={modalIsOpen} handleClose={() => setModalIsOpen(false)}>
+        <h1>Deletar rifa de {raffleToBeDeleted?.participantName}?</h1>
+        <Button onClick={() => handleDelete(raffleToBeDeleted!.id)}>Sim</Button>
+        <Button onClick={() => setModalIsOpen(false)}>Não</Button>
+      </ModalBase>
     </Wrapper>
   );
 };
