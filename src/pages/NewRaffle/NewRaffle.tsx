@@ -20,7 +20,7 @@ const NewRaffle: FC = () => {
     },
     onSubmit: async (values) => {
       createRaffles(campaignId, values).then(() => {
-        alert("Rifa criada");
+        navigate(`/campaigns/${campaignId}/raffles`);
       });
     },
   });

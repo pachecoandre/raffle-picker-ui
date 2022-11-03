@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import { useParams } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -28,8 +28,6 @@ const RafflesTable = () => {
     null
   );
 
-  const fetchRaffles = () => {};
-
   const handleChangePage = async (_: unknown, newPage: number) => {
     const { data, totalRows } = await getRaffles(
       campaignId,
@@ -42,7 +40,7 @@ const RafflesTable = () => {
   };
 
   const handleChangeRowsPerPage = async (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>
   ) => {
     const newRowsPerPage = parseInt(event.target.value, 10);
     setRowsPerPage(newRowsPerPage);
@@ -65,7 +63,10 @@ const RafflesTable = () => {
   const handleDelete = (id: number) => {
     setModalIsOpen(false);
     deleteRaffle(campaignId, id).then(() => {
-      setRaffles(raffles.filter((raffle: Raffle) => raffle.id !== id));
+      getRaffles(campaignId, page, rowsPerPage).then(({ data, totalRows }) => {
+        setRaffles(data);
+        setTotalRows(totalRows);
+      });
     });
   };
 
@@ -76,13 +77,15 @@ const RafflesTable = () => {
     });
   }, [campaignId]);
 
-  useEffect(() => {    
+  useEffect(() => {
     if (page > 0 && raffles.length === 0) {
       setPage(page - 1);
-      getRaffles(campaignId, page - 1, rowsPerPage).then(({ data, totalRows }) => {
-        setRaffles(data);
-        setTotalRows(totalRows);
-      });
+      getRaffles(campaignId, page - 1, rowsPerPage).then(
+        ({ data, totalRows }) => {
+          setRaffles(data);
+          setTotalRows(totalRows);
+        }
+      );
     }
   }, [raffles]);
 
