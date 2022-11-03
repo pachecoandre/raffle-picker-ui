@@ -31,7 +31,7 @@ const SellerInvitation: FC = () => {
   return (
     <Container>
       <Section>
-        <Title backButton={true}>
+        <Title backLink={`/campaigns/${campaignId}`}>
           Convidar Vendedores - Campanha {campaignId}
         </Title>
       </Section>

@@ -14,7 +14,7 @@ const Prizes: FC = () => {
   return (
     <Container>
       <Section>
-        <Title backButton={true}>Prêmios da campanha {campaignId}</Title>
+        <Title backLink={`/campaigns/${campaignId}`}>Prêmios da campanha {campaignId}</Title>
       </Section>
       <Section mb={1}>
         <ActionsArea>

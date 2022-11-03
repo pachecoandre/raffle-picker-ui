@@ -17,7 +17,7 @@ import ModalBase from "components/ModalBase";
 import Button from "components/Button";
 import { Prize } from "pages/Prizes/types";
 
-const SellersTable = () => {
+const PrizesTable = () => {
   const { campaignId = "" } = useParams();
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -131,12 +131,12 @@ const SellersTable = () => {
         />
       </div>
       <ModalBase open={modalIsOpen} handleClose={() => setModalIsOpen(false)}>
-        <h1>Excluir rifa de {prizeToBeDeleted!.name}?</h1>
-        <Button onClick={() => handleDelete(prizeToBeDeleted!.id)}>Sim</Button>
+        <h1>Excluir prêmio {prizeToBeDeleted?.name || ""}?</h1>
         <Button onClick={() => setModalIsOpen(false)}>Cancelar</Button>
+        <Button onClick={() => handleDelete(prizeToBeDeleted!.id)}>Sim</Button>
       </ModalBase>
     </Wrapper>
   );
 };
 
-export default SellersTable;
+export default PrizesTable;

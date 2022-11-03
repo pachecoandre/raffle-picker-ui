@@ -14,7 +14,9 @@ const Sellers: FC = () => {
   return (
     <Container>
       <Section>
-        <Title backButton={true}>Vendedores de campanha {campaignId}</Title>
+        <Title backLink={`/campaigns/${campaignId}`}>
+          Vendedores de campanha {campaignId}
+        </Title>
       </Section>
       <Section mb={1}>
         <ActionsArea>

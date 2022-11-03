@@ -32,7 +32,7 @@ const NewPrize: FC = () => {
   return (
     <Container>
       <Section>
-        <Title backButton={true}>
+        <Title backLink={`/campaigns/${campaignId}/prizes`}>
           Cadastrar novo prêmio na campanha {campaignId}
         </Title>
       </Section>

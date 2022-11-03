@@ -5,16 +5,16 @@ import GoBack from "components/GoBack";
 import { Text, Wrapper } from "./styles";
 
 interface Props {
-  backButton?: boolean;
+  backLink?: string;
   configUrl?: string;
   children: ReactNode;
 }
 
-const Title: FC<Props> = ({ backButton, children, configUrl }) => {
+const Title: FC<Props> = ({ backLink, children, configUrl }) => {
   return (
     <Grid container>
       <Grid item xs={2} sm={2}>
-        {backButton && <GoBack />}
+        {backLink && <GoBack link={backLink} />}
       </Grid>
       <Grid item xs={10} sm={8}>
         <Wrapper>
