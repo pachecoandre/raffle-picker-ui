@@ -1,10 +1,10 @@
-import * as React from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import { useParams } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 
-import { getPrizes } from "client";
+import { getPrizes, deletePrize } from "client";
 import {
   TableCell,
   TableContainer,
@@ -13,14 +13,19 @@ import {
   Wrapper,
 } from "./styles";
 import { LinkButton } from "components/Button/styles";
+import ModalBase from "components/ModalBase";
+import Button from "components/Button";
+import { Prize } from "pages/Prizes/types";
 
 const SellersTable = () => {
   const { campaignId = "" } = useParams();
 
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [page, setPage] = React.useState(0);
-  const [prizes, setPrizes] = React.useState<any>([]);
-  const [totalRows, setTotalRows] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [page, setPage] = useState(0);
+  const [prizes, setPrizes] = useState<any>([]);
+  const [totalRows, setTotalRows] = useState(0);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [prizeToBeDeleted, setPrizeToBeDeleted] = useState<null | Prize>(null);
 
   const handleChangePage = async (_: unknown, newPage: number) => {
     const { data, totalRows } = await getPrizes(
@@ -34,7 +39,7 @@ const SellersTable = () => {
   };
 
   const handleChangeRowsPerPage = async (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>
   ) => {
     const newRowsPerPage = parseInt(event.target.value, 10);
     setRowsPerPage(newRowsPerPage);
@@ -49,12 +54,38 @@ const SellersTable = () => {
     }
   };
 
-  React.useEffect(() => {
+  const handleDeleteModal = (prize: Prize) => {
+    setModalIsOpen(true);
+    setPrizeToBeDeleted(prize);
+  };
+
+  const handleDelete = (prizeId: number) => {
+    setModalIsOpen(false);
+    deletePrize(campaignId, prizeId).then(() => {
+      getPrizes(campaignId, page, rowsPerPage).then(({ data, totalRows }) => {
+        setPrizes(data);
+        setTotalRows(totalRows);
+      });
+    });
+  };
+
+  useEffect(() => {
     getPrizes(campaignId, page, rowsPerPage).then(({ data, totalRows }) => {
       setPrizes(data);
       setTotalRows(totalRows);
     });
-  }, []);
+  }, [campaignId]);
+
+  useEffect(() => {
+    if (page > 0 && prizes.length === 0) {
+      getPrizes(campaignId, page - 1, rowsPerPage).then(
+        ({ data, totalRows }) => {
+          setPrizes(data);
+          setTotalRows(totalRows);
+        }
+      );
+    }
+  }, [prizes]);
 
   return (
     <Wrapper>
@@ -79,7 +110,9 @@ const SellersTable = () => {
                   </TableCell>
                   <TableCell align="center">{row.quantity}</TableCell>
                   <TableCell align="right">
-                    <LinkButton>Excluir</LinkButton>
+                    <LinkButton onClick={() => handleDeleteModal(row)}>
+                      Excluir
+                    </LinkButton>
                   </TableCell>
                 </TableRow>
               ))}
@@ -97,6 +130,11 @@ const SellersTable = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </div>
+      <ModalBase open={modalIsOpen} handleClose={() => setModalIsOpen(false)}>
+        <h1>Excluir rifa de {prizeToBeDeleted!.name}?</h1>
+        <Button onClick={() => handleDelete(prizeToBeDeleted!.id)}>Sim</Button>
+        <Button onClick={() => setModalIsOpen(false)}>Cancelar</Button>
+      </ModalBase>
     </Wrapper>
   );
 };
