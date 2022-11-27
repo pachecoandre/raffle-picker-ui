@@ -15,7 +15,6 @@ export const ContentDiv = styled.div<ContentDivProps>`
   ${({ justifyCenter }) =>
     justifyCenter &&
     `
-    text-align: center;
     display: flex;
     justify-content: center;
   `}

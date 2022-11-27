@@ -9,11 +9,11 @@ const HomePage = lazy(() => import("pages/Home"));
 const NewCampaignPage = lazy(() => import("pages/NewCampaign"));
 const CampaignPage = lazy(() => import("pages/Campaign"));
 const SellersPage = lazy(() => import("pages/Sellers"));
-const SellerInvitation = lazy(() => import("pages/SellerInvitation"));
+const SellerInvitationPage = lazy(() => import("pages/SellerInvitation"));
 const PrizesPage = lazy(() => import("pages/Prizes"));
 const RafflesPage = lazy(() => import("pages/Raffles"))
 const NewPrizePage = lazy(() => import("pages/NewPrize"));
-const NewRaffle = lazy(() => import("pages/NewRaffle"));
+const NewRafflePage = lazy(() => import("pages/NewRaffle"));
 const NavBar = lazy(() => import("components/NavBar"));
 
 function AppRouter() {
@@ -51,6 +51,14 @@ function AppRouter() {
           }
         />
         <Route
+          path={"/campaigns/:campaignId/edit"}
+          element={
+            <PrivateRoute allowedRoles={["user", "admin"]}>
+              <NewCampaignPage isEdit={true} />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path={"/campaigns/:campaignId/sellers"}
           element={
             <PrivateRoute allowedRoles={["admin"]}>
@@ -62,7 +70,7 @@ function AppRouter() {
           path={"/campaigns/:campaignId/sellers/invite"}
           element={
             <PrivateRoute allowedRoles={["admin"]}>
-              <SellerInvitation />
+              <SellerInvitationPage />
             </PrivateRoute>
           }
         />
@@ -94,7 +102,7 @@ function AppRouter() {
           path={"/campaigns/:campaignId/raffles/new"}
           element={
             <PrivateRoute allowedRoles={["admin", "seller"]}>
-              <NewRaffle />
+              <NewRafflePage />
             </PrivateRoute>
           }
         />

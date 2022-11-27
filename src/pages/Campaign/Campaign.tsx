@@ -8,14 +8,7 @@ import Title from "components/Title";
 import Content from "components/Content";
 import { Link, Paper } from "./styles";
 import Button from "components/Button";
-
-interface ICampaign {
-  sellers?: number;
-  prizesCount?: number;
-  rafflesCount?: number;
-  rafflePrice?: number;
-  revenue?: number;
-}
+import { ICampaign } from './types'
 
 const Campaign: FC = () => {
   const { campaignId } = useParams();
@@ -24,10 +17,10 @@ const Campaign: FC = () => {
 
   useEffect(() => {
     getCampaign(campaignId)
-      .then((result) => {
+      .then((result: ICampaign) => {
         setCampaign(result);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         console.log(err);
       });
   }, [campaignId]);
