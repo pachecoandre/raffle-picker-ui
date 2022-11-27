@@ -51,7 +51,6 @@ const NewCampaign: FC<Props> = ({ isEdit = false }) => {
   useEffect(() => {
     if (isEdit) {
       getCampaign(campaignId).then((data) => {
-        console.log(data);
         formik.setFieldValue("name", data.name);
         formik.setFieldValue("price", data.rafflePrice);
         formik.setFieldValue("drawDate", data.estimatedDrawDate?.split("T")[0]);

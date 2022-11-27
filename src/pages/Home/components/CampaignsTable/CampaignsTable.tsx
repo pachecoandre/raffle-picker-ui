@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 import ActionsArea from "components/ActionsArea";
 import { StyledTable } from "./styles";
 import Button from "components/Button";
@@ -45,7 +46,7 @@ const CampaignsTable: FC<Props> = ({ title, header, data }) => {
               <td>
                 <Link to={`/campaigns/${row.id}`}>{row.name}</Link>
               </td>
-              <td>{row.estimated_draw_date}</td>
+              <td>{format(new Date(row.estimated_draw_date), 'dd/MM/yyyy')}</td>
             </tr>
           ))}
         </tbody>
