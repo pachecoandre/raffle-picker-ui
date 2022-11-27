@@ -22,10 +22,14 @@ const getCampaign = async (campaignId: string = ""): Promise<ICampaign> => {
 };
 
 const createCampaign = async (payload: CampaignPayload) => {
-  await client.post("/campaigns", payload);
+  const { data } = await client.post("/campaigns", payload);
+  return data;
 };
 
-const editCampaign = async () => {};
+const updateCampaign = async (campaignId: string, payload: CampaignPayload) => {
+  const { data } = await client.patch(`/campaigns/${campaignId}`, payload);
+  return data;
+};
 
 const getRaffles = async (
   campaignId: string,
@@ -71,7 +75,7 @@ export {
   getCampaign,
   getCampaigns,
   createCampaign,
-  editCampaign,
+  updateCampaign,
   getRaffles,
   createRaffles,
   deleteRaffle,

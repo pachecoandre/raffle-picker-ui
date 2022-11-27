@@ -1,19 +1,20 @@
 import { FC, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import Container from "components/Container";
 import Input from "components/Input";
 import Section from "components/Section";
 import Button from "components/Button";
-import { createCampaign, getCampaign, editCampaign } from "client";
+import { createCampaign, getCampaign, updateCampaign } from "client";
 import Content from "components/Content";
 
 interface Props {
   isEdit?: boolean;
 }
 
-const NewCampaign: FC<Props> = ({ isEdit }) => {
+const NewCampaign: FC<Props> = ({ isEdit = false }) => {
   const navigate = useNavigate();
+  const { campaignId = "" } = useParams();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -25,24 +26,35 @@ const NewCampaign: FC<Props> = ({ isEdit }) => {
         return alert("Por favor, informe um preço válido");
       }
       if (isEdit) {
-        editCampaign();
-      } else {
-        createCampaign({
+        return updateCampaign(campaignId, {
           name: values.name,
-          rafflePrice: Number(values.price),
           estimatedDrawDate: values.drawDate,
-        }).then(() => alert("Campanha criada"));
+        }).then(() => {
+          setTimeout(() => {
+            navigate(`/campaigns/${campaignId}`);
+          }, 500);
+        });
       }
+      createCampaign({
+        name: values.name,
+        rafflePrice: Number(values.price),
+        estimatedDrawDate: values.drawDate,
+      }).then(({ id }) =>
+        setTimeout(() => {
+          navigate(`/campaigns/${id}`);
+        }, 500)
+      );
     },
   });
   const handleCancel = () => navigate(-1);
 
   useEffect(() => {
     if (isEdit) {
-      getCampaign().then((data) => {
+      getCampaign(campaignId).then((data) => {
+        console.log(data);
         formik.setFieldValue("name", data.name);
-        formik.setFieldValue("name", data.rafflePrice);
-        formik.setFieldValue("drawDate", data.estimatedDrawDate);
+        formik.setFieldValue("price", data.rafflePrice);
+        formik.setFieldValue("drawDate", data.estimatedDrawDate?.split("T")[0]);
       });
     }
   }, []);
@@ -70,6 +82,7 @@ const NewCampaign: FC<Props> = ({ isEdit }) => {
               type="number"
               onChange={formik.handleChange}
               value={formik.values.price}
+              disabled={isEdit}
             />
             <Input
               label="Data prevista para o sorteio"

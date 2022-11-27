@@ -1,5 +1,5 @@
 export interface CampaignPayload {
   name: string;
-  rafflePrice: number;
+  rafflePrice?: number;
   estimatedDrawDate: string;
 }
