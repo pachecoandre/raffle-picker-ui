@@ -20,7 +20,7 @@ import { Prize } from "pages/Prizes/types";
 const PrizesTable = () => {
   const { campaignId = "" } = useParams();
 
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(15);
   const [page, setPage] = useState(0);
   const [prizes, setPrizes] = useState<any>([]);
   const [totalRows, setTotalRows] = useState(0);
@@ -121,7 +121,7 @@ const PrizesTable = () => {
         </TableContainer>
         <TablePagination
           style={{ display: totalRows < 5 ? "none" : "" }}
-          rowsPerPageOptions={[3, 5, 7]}
+          rowsPerPageOptions={[15, 50, 100]}
           component="div"
           count={totalRows}
           rowsPerPage={rowsPerPage}

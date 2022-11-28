@@ -28,7 +28,7 @@ export const Wrapper = styled.div`
 
 export const TableContainer = styled(MuiTableContainer)`
   &.MuiTableContainer-root {
-    min-height: 220px;
+    min-height: 517px;
   }
 `;
 
