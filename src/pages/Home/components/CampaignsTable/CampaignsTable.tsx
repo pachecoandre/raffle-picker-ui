@@ -47,6 +47,9 @@ const CampaignsTable: FC<Props> = ({ title, header, data }) => {
                 <Link to={`/campaigns/${row.id}`}>{row.name}</Link>
               </td>
               <td>{format(new Date(row.estimated_draw_date), 'dd/MM/yyyy')}</td>
+              <td>
+                <Link to={`/campaigns/${row.id}/raffles/new`}>Cadastrar rifa</Link>
+              </td>
             </tr>
           ))}
         </tbody>

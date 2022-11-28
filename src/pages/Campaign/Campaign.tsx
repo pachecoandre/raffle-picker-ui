@@ -8,7 +8,7 @@ import Title from "components/Title";
 import Content from "components/Content";
 import { Link, Paper } from "./styles";
 import Button from "components/Button";
-import { ICampaign } from './types'
+import { ICampaign } from "./types";
 
 const Campaign: FC = () => {
   const { campaignId } = useParams();
@@ -29,7 +29,7 @@ const Campaign: FC = () => {
     <Container>
       <Section>
         <Title backLink={"/"} configUrl={`/campaigns/${campaignId}/edit`}>
-          Campanha {campaignId}
+          {campaign.name}
         </Title>
       </Section>
       <Content justifyCenter>
