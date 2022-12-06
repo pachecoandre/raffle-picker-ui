@@ -28,6 +28,7 @@ const NewPrize: FC = () => {
       });
     },
   });
+  const handleCancel = () => navigate(-1);
 
   return (
     <Container>
@@ -68,6 +69,9 @@ const NewPrize: FC = () => {
               onChange={formik.handleChange}
               value={formik.values.quantity}
             />
+            <Button type="button" onClick={handleCancel}>
+              Cancelar
+            </Button>
             <Button type="submit">Cadastrar</Button>
           </form>
         </Section>

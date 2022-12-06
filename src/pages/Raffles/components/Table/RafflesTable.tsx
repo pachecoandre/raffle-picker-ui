@@ -138,8 +138,8 @@ const RafflesTable = () => {
       </div>
       <ModalBase open={modalIsOpen} handleClose={() => setModalIsOpen(false)}>
         <h1>Deletar rifa de {raffleToBeDeleted?.participantName}?</h1>
-        <Button onClick={() => handleDelete(raffleToBeDeleted!.id)}>Sim</Button>
         <Button onClick={() => setModalIsOpen(false)}>Não</Button>
+        <Button onClick={() => handleDelete(raffleToBeDeleted!.id)}>Sim</Button>
       </ModalBase>
     </Wrapper>
   );
