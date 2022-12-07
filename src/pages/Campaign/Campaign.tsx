@@ -16,9 +16,13 @@ const Campaign: FC = () => {
 
   const [campaign, setCampaign] = useState<ICampaign>({});
 
+  const handleViewDrawResult = () => {
+    navigate(`/campaigns/${campaignId}/draw`);
+  };
+
   const handleDraw = () => {
     draw(campaignId).then(() => {
-      navigate(`/campaigns/${campaignId}/draw`);
+      handleViewDrawResult();
     });
   };
 
@@ -55,7 +59,11 @@ const Campaign: FC = () => {
           </Link>
         </Section>
         <Section>
-          <Button onClick={handleDraw}>Realizar sorteio</Button>
+          {campaign.drawDate ? (
+            <Button onClick={handleViewDrawResult}>Ver premiação</Button>
+          ) : (
+            <Button onClick={handleDraw}>Realizar sorteio</Button>
+          )}
         </Section>
       </Content>
     </Container>

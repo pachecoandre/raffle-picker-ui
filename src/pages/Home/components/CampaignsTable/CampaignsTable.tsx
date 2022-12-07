@@ -46,9 +46,15 @@ const CampaignsTable: FC<Props> = ({ title, header, data }) => {
               <td>
                 <Link to={`/campaigns/${row.id}`}>{row.name}</Link>
               </td>
-              <td>{format(new Date(row.estimated_draw_date), 'dd/MM/yyyy')}</td>
+              <td>{format(new Date(row.estimated_draw_date), "dd/MM/yyyy")}</td>
               <td>
-                <Link to={`/campaigns/${row.id}/raffles/new`}>Cadastrar rifa</Link>
+                {row.draw_date ? (
+                  <Link to={`/campaigns/${row.id}/draw`}>Ver premiação</Link>
+                ) : (
+                  <Link to={`/campaigns/${row.id}/raffles/new`}>
+                    Cadastrar rifa
+                  </Link>
+                )}
               </td>
             </tr>
           ))}
