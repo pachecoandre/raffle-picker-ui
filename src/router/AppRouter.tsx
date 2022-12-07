@@ -11,9 +11,10 @@ const CampaignPage = lazy(() => import("pages/Campaign"));
 const SellersPage = lazy(() => import("pages/Sellers"));
 const SellerInvitationPage = lazy(() => import("pages/SellerInvitation"));
 const PrizesPage = lazy(() => import("pages/Prizes"));
-const RafflesPage = lazy(() => import("pages/Raffles"))
+const RafflesPage = lazy(() => import("pages/Raffles"));
 const NewPrizePage = lazy(() => import("pages/NewPrize"));
 const NewRafflePage = lazy(() => import("pages/NewRaffle"));
+const DrawResultPage = lazy(() => import("pages/DrawResultPage"));
 const NavBar = lazy(() => import("components/NavBar"));
 
 function AppRouter() {
@@ -103,6 +104,14 @@ function AppRouter() {
           element={
             <PrivateRoute allowedRoles={["admin", "seller"]}>
               <NewRafflePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={"/campaigns/:campaignId/draw"}
+          element={
+            <PrivateRoute allowedRoles={["admin", "seller"]}>
+              <DrawResultPage />
             </PrivateRoute>
           }
         />

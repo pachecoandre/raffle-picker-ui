@@ -5,6 +5,7 @@ import { RafflePayload } from "../pages/NewRaffle/types";
 import { PrizePayload } from "pages/NewPrize/types";
 import { CampaignPayload } from "pages/NewCampaign/types";
 import { ICampaign } from "pages/Campaign/types";
+import { DrawResult } from "./types";
 
 const client = axios.create({
   baseURL: "http://localhost:8000/v1",
@@ -43,11 +44,11 @@ const getRaffles = async (
 };
 
 const createRaffles = async (campaignId: string, payload: RafflePayload) => {
-  await client.post(`/campaigns/${campaignId}/raffles`, payload);
+  client.post(`/campaigns/${campaignId}/raffles`, payload);
 };
 
 const deleteRaffle = async (campaignId: string, id: number) => {
-  await client.delete(`/campaigns/${campaignId}/raffles/${id}`);
+  client.delete(`/campaigns/${campaignId}/raffles/${id}`);
 };
 
 const getPrizes = async (
@@ -62,11 +63,20 @@ const getPrizes = async (
 };
 
 const createPrize = async (campaignId: string, payload: PrizePayload) => {
-  await client.post(`/campaigns/${campaignId}/prizes`, payload);
+  client.post(`/campaigns/${campaignId}/prizes`, payload);
 };
 
 const deletePrize = async (campaignId: string, prizeId: number) => {
-  await client.delete(`/campaigns/${campaignId}/prizes/${prizeId}`);
+  client.delete(`/campaigns/${campaignId}/prizes/${prizeId}`);
+};
+
+const draw = async (campaignId: string) => {
+  client.post(`/campaigns/${campaignId}/draw`);
+};
+
+const getDrawResult = async (campaignId: string): Promise<DrawResult[]> => {
+  const { data } = await client.get(`/campaigns/${campaignId}/draw`);
+  return data;
 };
 
 const getSellers = getRaffles;
@@ -83,4 +93,6 @@ export {
   createPrize,
   deletePrize,
   getSellers,
+  draw,
+  getDrawResult,
 };

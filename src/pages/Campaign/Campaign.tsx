@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getCampaign } from "../../client";
+import { useParams, useNavigate } from "react-router-dom";
+import { getCampaign, draw } from "../../client";
 import { currency } from "helpers/formatter";
 import Container from "components/Container";
 import Section from "components/Section";
@@ -11,9 +11,16 @@ import Button from "components/Button";
 import { ICampaign } from "./types";
 
 const Campaign: FC = () => {
-  const { campaignId } = useParams();
+  const { campaignId = "" } = useParams();
+  const navigate = useNavigate();
 
   const [campaign, setCampaign] = useState<ICampaign>({});
+
+  const handleDraw = () => {
+    draw(campaignId).then(() => {
+      navigate(`/campaigns/${campaignId}/draw`);
+    });
+  };
 
   useEffect(() => {
     getCampaign(campaignId)
@@ -48,7 +55,7 @@ const Campaign: FC = () => {
           </Link>
         </Section>
         <Section>
-          <Button>Realizar sorteio</Button>
+          <Button onClick={handleDraw}>Realizar sorteio</Button>
         </Section>
       </Content>
     </Container>
