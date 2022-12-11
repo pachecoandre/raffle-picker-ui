@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "state";
 import Container from "components/Container";
@@ -7,19 +7,31 @@ import Section from "components/Section";
 import { useFormik } from "formik";
 import Input from "components/Input";
 
+type GoogleCredentialResponse = google.accounts.id.CredentialResponse;
+
 const LoginPage: FC<{}> = () => {
   const navigate = useNavigate();
-  const formik = useFormik({
-    initialValues: {
-      username: "",
-      password: "",
-    },
-    onSubmit: (values) => {
-      setState({ isLogged: true });
-      navigate("/");
-    },
-  });
+
+  const handleLogin = () => {
+    setState({ isLogged: true });
+    navigate("/");
+  };
   const { setState } = useGlobalContext();
+
+  const handleGoogleSignIn = (response: GoogleCredentialResponse) => {
+    console.log(response.credential);
+  };
+
+  useEffect(() => {
+    google.accounts.id.initialize({
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID!,
+      callback: handleGoogleSignIn,
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("google-sign-in-button")!,
+      { type: "standard", theme: "outline" }
+    );
+  }, []);
 
   return (
     <Container>
@@ -27,24 +39,10 @@ const LoginPage: FC<{}> = () => {
         <h1>LogIn</h1>
       </Section>
       <Section>
-        <form onSubmit={formik.handleSubmit}>
-          <Input
-            name="username"
-            label="Email"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.username}
-          />
-
-          <Input
-            name="password"
-            label="Senha"
-            type="password"
-            onChange={formik.handleChange}
-            value={formik.values.password}
-          />
-          <Button type="submit">Login</Button>
-        </form>
+        <div id="google-sign-in-button" />
+      </Section>
+      <Section>
+        <Button onClick={handleLogin}>Login</Button>
       </Section>
     </Container>
   );
