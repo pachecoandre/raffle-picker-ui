@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "state";
+import { login } from "client";
 import Container from "components/Container";
 import Button from "components/Button";
 import Section from "components/Section";
@@ -19,7 +20,9 @@ const LoginPage: FC<{}> = () => {
   const { setState } = useGlobalContext();
 
   const handleGoogleSignIn = (response: GoogleCredentialResponse) => {
-    console.log(response.credential);
+    login(response.credential).then((payload) => {
+      console.log(payload);
+    });
   };
 
   useEffect(() => {

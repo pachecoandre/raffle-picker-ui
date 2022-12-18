@@ -12,6 +12,11 @@ const client = axios.create({
   headers: { Authorization: `Bearer 1` },
 });
 
+const login = async (token: string) => {
+  const { data } = await client.post("/users/login", { token });
+  return data;
+};
+
 const getCampaigns = async () => {
   const { data } = await client.get("/campaigns");
   return data;
@@ -82,6 +87,7 @@ const getDrawResult = async (campaignId: string): Promise<DrawResult[]> => {
 const getSellers = getRaffles;
 
 export {
+  login,
   getCampaign,
   getCampaigns,
   createCampaign,
