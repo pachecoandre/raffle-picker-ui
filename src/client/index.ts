@@ -11,7 +11,7 @@ const client = axios.create({ baseURL: "http://localhost:8000/v1" });
 
 const login = async (googleToken: string) => {
   const { data } = await client.post("/users/login", { googleToken });
-  client.defaults.headers.common["Authorization"] = `Bearer ${1}`;
+  client.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
   return data;
 };
 
