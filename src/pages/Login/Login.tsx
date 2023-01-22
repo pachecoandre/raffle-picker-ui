@@ -3,25 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "state";
 import { login } from "client";
 import Container from "components/Container";
-import Button from "components/Button";
 import Section from "components/Section";
-import { useFormik } from "formik";
-import Input from "components/Input";
 
 type GoogleCredentialResponse = google.accounts.id.CredentialResponse;
 
 const LoginPage: FC<{}> = () => {
   const navigate = useNavigate();
-
-  const handleLogin = () => {
-    setState({ isLogged: true });
-    navigate("/");
-  };
   const { setState } = useGlobalContext();
 
   const handleGoogleSignIn = (response: GoogleCredentialResponse) => {
-    login(response.credential).then((payload) => {
-      console.log(payload);
+    login(response.credential).then(({ id, email, name }) => {
+      setState({ isLogged: true, userId: id, email, name });
+      navigate("/");
     });
   };
 
@@ -43,9 +36,6 @@ const LoginPage: FC<{}> = () => {
       </Section>
       <Section>
         <div id="google-sign-in-button" />
-      </Section>
-      <Section>
-        <Button onClick={handleLogin}>Login</Button>
       </Section>
     </Container>
   );
