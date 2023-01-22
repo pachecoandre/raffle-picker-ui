@@ -7,13 +7,11 @@ import { CampaignPayload } from "pages/NewCampaign/types";
 import { ICampaign } from "pages/Campaign/types";
 import { DrawResult } from "./types";
 
-const client = axios.create({
-  baseURL: "http://localhost:8000/v1",
-  headers: { Authorization: `Bearer 1` },
-});
+const client = axios.create({ baseURL: "http://localhost:8000/v1" });
 
-const login = async (token: string) => {
-  const { data } = await client.post("/users/login", { token });
+const login = async (googleToken: string) => {
+  const { data } = await client.post("/users/login", { googleToken });
+  client.defaults.headers.common["Authorization"] = `Bearer ${1}`;
   return data;
 };
 
