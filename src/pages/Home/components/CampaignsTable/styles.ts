@@ -8,7 +8,6 @@ export const StyledTable = styled.table`
 
   td,
   th {
-    text-align: left;
     padding: 8px;
   }
 `;

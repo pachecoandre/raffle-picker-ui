@@ -18,42 +18,44 @@ interface Campaign {
 
 interface Props {
   title?: string;
-  header: string[];
   data: Campaign[];
 }
 
-const CampaignsTable: FC<Props> = ({ title, header, data }) => {
+const CampaignsTable: FC<Props> = ({ title, data }) => {
   const navigate = useNavigate();
   return (
     <Content>
       <ActionsArea>
-        <Button onClick={() => navigate("/campaigns/new")}>
-          Criar campanha
-        </Button>
+        <Link to={"/campaigns/new"}>
+          Criar campanha <span style={{ fontSize: 22 }}>+</span>
+        </Link>
       </ActionsArea>
       {title && <span>{title}</span>}
       <StyledTable>
         <thead>
           <tr>
-            {header.map((label) => (
-              <th key={label}>{label}</th>
-            ))}
+            <th align="left">Campanhas</th>
+            <th align="center">Data do sorteio</th>
           </tr>
         </thead>
         <tbody>
           {data.map((row) => (
             <tr key={row.id}>
-              <td>
+              <td align="left">
                 <Link to={`/campaigns/${row.id}`}>{row.name}</Link>
               </td>
-              <td>{format(new Date(row.estimated_draw_date), "dd/MM/yyyy")}</td>
-              <td>
+              <td align="center">
+                {format(new Date(row.estimated_draw_date), "dd/MM/yyyy")}
+              </td>
+              <td align="right">
                 {row.draw_date ? (
                   <Link to={`/campaigns/${row.id}/draw`}>Ver premiação</Link>
                 ) : (
-                  <Link to={`/campaigns/${row.id}/raffles/new`}>
+                  <Button
+                    onClick={() => navigate(`/campaigns/${row.id}/raffles/new`)}
+                  >
                     Cadastrar rifa
-                  </Link>
+                  </Button>
                 )}
               </td>
             </tr>

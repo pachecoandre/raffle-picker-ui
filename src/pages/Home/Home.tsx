@@ -22,7 +22,6 @@ const HomePage = () => {
       </Section>
       <Section>
         <CampaignsTable
-          header={["Campanhas", "Data do sorteio"]}
           data={campaigns}
         />
       </Section>
