@@ -1,14 +1,13 @@
 import { FC } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Container from "components/Container";
 import Section from "components/Section";
 import Title from "components/Title";
-import useWinners from "hooks/useWinners";
+import useDrawItems from "hooks/useDrawItems";
 
 const Prizes: FC = () => {
   const { campaignId } = useParams();
-  const navigate = useNavigate();
-  const winners = useWinners();
+  const drawItems = useDrawItems();
 
   return (
     <Container>
@@ -27,12 +26,12 @@ const Prizes: FC = () => {
             </tr>
           </thead>
           <tbody>
-            {winners.length > 0
-              ? winners.map((winner) => (
-                  <tr>
-                    <td>{winner?.prizeName}</td>
-                    <td>{winner?.winnerName}</td>
-                    <td>{winner?.winnerPhone}</td>
+            {drawItems.length > 0
+              ? drawItems.map((drawItem) => (
+                  <tr key={drawItem.id}>
+                    <td>{drawItem?.prizeName}</td>
+                    <td>{drawItem?.winnerName}</td>
+                    <td>{drawItem?.winnerPhone}</td>
                   </tr>
                 ))
               : null}
