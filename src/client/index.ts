@@ -8,10 +8,20 @@ import { ICampaign } from "pages/Campaign/types";
 import { DrawResult } from "./types";
 
 const client = axios.create({ baseURL: "http://localhost:8000/v1" });
+client.interceptors.response.use(
+  (res) => res,
+  (error) => {
+    if (error.response.status === 401) {
+      localStorage.removeItem("t");
+      window.location.reload();
+    }
+  }
+);
 
 const login = async (googleToken: string) => {
   const { data } = await client.post("/users/login", { googleToken });
   client.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+  localStorage.setItem("t", data.token);
   return data;
 };
 
@@ -85,6 +95,7 @@ const getDrawResult = async (campaignId: string): Promise<DrawResult[]> => {
 const getSellers = getRaffles;
 
 export {
+  client,
   login,
   getCampaign,
   getCampaigns,

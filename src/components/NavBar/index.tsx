@@ -1,10 +1,16 @@
 import Button from "components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../state";
 import { Nav } from "./styles";
+
 const NavBar = () => {
   const { resetState } = useGlobalContext();
-  const handleLogout = () => resetState();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("t");
+    resetState();
+    navigate("/login");
+  };
 
   return (
     <Nav>
