@@ -21,11 +21,9 @@ const PrivateRoute: FC<Props> = ({ children, allowedRoles }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("t");
-
     if (token) {
       client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       setState({ isLogged: true });
-      return;
     } else {
       navigate("/login");
     }
