@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../state";
-import { client } from "../client";
+import { client, verifyToken } from "../client";
 import AccessDenied from "./AccessDenied";
 import Loader from "components/Loader";
 
@@ -20,12 +20,21 @@ const PrivateRoute: FC<Props> = ({ children, allowedRoles }) => {
   const hasAccess = () => allowedRoles.includes(role);
 
   useEffect(() => {
-    const token = localStorage.getItem("t");
-    if (token) {
-      client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      setState({ isLogged: true });
-    } else {
-      navigate("/login");
+    if (!isLogged) {
+      const token = localStorage.getItem("t");
+      if (token) {
+        verifyToken(token)
+          .then(() => {
+            client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+            setState({ isLogged: true });
+          })
+          .catch(() => {
+            console.log("Token expired");
+            navigate("/login");
+          });
+      } else {
+        navigate("/login");
+      }
     }
   }, []);
 

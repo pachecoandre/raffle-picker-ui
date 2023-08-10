@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "state";
-import { client, login } from "client";
+import { client, login, verifyToken } from "client";
 import Container from "components/Container";
 import Section from "components/Section";
 
@@ -19,12 +19,18 @@ const LoginPage: FC<{}> = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("t");
-    if (token) {
-      client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      setState({ isLogged: true });
-      navigate("/");
-    } else {
+    (async () => {
+      const token = localStorage.getItem("t");
+      if (token) {
+        try {
+          await verifyToken(token);
+          client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          setState({ isLogged: true });
+          return navigate("/");
+        } catch (error) {
+          console.log("Token expired");
+        }
+      }
       google.accounts.id.initialize({
         client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID!,
         callback: handleGoogleSignIn,
@@ -33,7 +39,7 @@ const LoginPage: FC<{}> = () => {
         document.getElementById("google-sign-in-button")!,
         { type: "standard", theme: "outline" }
       );
-    }
+    })();
   }, []);
 
   return (

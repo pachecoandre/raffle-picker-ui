@@ -25,6 +25,11 @@ const login = async (googleToken: string) => {
   return data;
 };
 
+const verifyToken = async (token: string) => {
+  await client.post("/users/verify-token", { token });
+  client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+};
+
 const getCampaigns = async () => {
   const { data } = await client.get("/campaigns");
   return data;
@@ -97,6 +102,7 @@ const getSellers = getRaffles;
 export {
   client,
   login,
+  verifyToken,
   getCampaign,
   getCampaigns,
   createCampaign,

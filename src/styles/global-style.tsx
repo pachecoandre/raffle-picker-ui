@@ -34,6 +34,10 @@ const GlobalStyle = createGlobalStyle<Props>`
   a:active {
     color: unset;
   }
+  
+  .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon {
+    color: ${({ theme }) => theme.text} !important
+  }
 `;
 
 export default GlobalStyle;
