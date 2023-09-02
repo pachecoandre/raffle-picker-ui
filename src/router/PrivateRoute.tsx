@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../state";
 import { client, verifyToken } from "../client";
-import AccessDenied from "./AccessDenied";
+import AccessDenied from "../pages/AccessDenied/AccessDenied";
 import Loader from "components/Loader";
 
 interface Props {

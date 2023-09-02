@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { useGlobalContext } from "state";
 import Loader from "components/Loader";
 import PrivateRoute from "./PrivateRoute";
+import NotFound from "pages/NotFound";
 
 const LoginPage = lazy(() => import("pages/Login"));
 const HomePage = lazy(() => import("pages/Home"));
@@ -115,6 +116,7 @@ function AppRouter() {
             </PrivateRoute>
           }
         />
+        <Route path={"/not-found"} element={<NotFound />} />
       </Routes>
     </Suspense>
   );

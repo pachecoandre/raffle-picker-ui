@@ -8,12 +8,12 @@ import { ICampaign } from "pages/Campaign/types";
 import { DrawResult } from "./types";
 
 const client = axios.create({ baseURL: "http://localhost:8000/v1" });
+
 client.interceptors.response.use(
   (res) => res,
   (error) => {
-    if (error.response.status === 401) {
-      localStorage.removeItem("t");
-      window.location.reload();
+    if (error.response.status === 404) {
+      window.location.href = '/not-found' ;
     }
   }
 );
