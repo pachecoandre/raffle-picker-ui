@@ -13,7 +13,10 @@ client.interceptors.response.use(
   (res) => res,
   (error) => {
     if (error.response.status === 404) {
-      window.location.href = '/not-found' ;
+      window.location.href = "/not-found";
+    }
+    if (error.response.status === 401) {
+      throw error;
     }
   }
 );
@@ -26,8 +29,7 @@ const login = async (googleToken: string) => {
 };
 
 const verifyToken = async (token: string) => {
-  await client.post("/users/verify-token", { token });
-  client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  return client.post("/users/verify-token", { token });
 };
 
 const getCampaigns = async () => {
